@@ -90,21 +90,21 @@ exports.postLogin = (req, res, next) => {
     return res.redirect('/login');
   }
   //check captcha
-  if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-    req.flash('errors', {msg: 'Please select captcha.'});
-    return res.redirect('/login');
-  } else {
+  // if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+  //   req.flash('errors', {msg: 'Please select captcha.'});
+  //   return res.redirect('/login');
+  // } else {
     let secretKey = process.env.GG_CAPCHA_SECRET;
 
     let verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
 
-    request(verificationUrl, function (error, response, body) {
-      body = JSON.parse(body);
+    //request(verificationUrl, function (error, response, body) {
+    //  body = JSON.parse(body);
       // Success will be true or false depending upon captcha validation.
-      if (body.success !== undefined && !body.success) {
-        req.flash('errors', {msg: 'Failed captcha verification. Please contact Admin.'});
-        return res.redirect('/login');
-      }
+      // if (body.success !== undefined && !body.success) {
+      //   req.flash('errors', {msg: 'Failed captcha verification. Please contact Admin.'});
+      //   return res.redirect('/login');
+      // }
       passport.authenticate('local', (err, user, info) => {
         if (err) {
           return next(err);
@@ -133,12 +133,12 @@ exports.postLogin = (req, res, next) => {
             returnTo = '/dashboard';
           }
           if (!isActive)
-            returnTo = "/account/active";
+            returnTo = "/listCoin";
           res.redirect(returnTo);
         });
       })(req, res, next);
-    });
-  }
+    //});
+  //}
 };
 
 /**
