@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  .panel
+    .panel-heading
+      h3.panel-title
+        i.icon.fa.fa-link.m-l-30
+        | My Link
+        a(href=myLink).tag.tag-primary.white= myLink
+    .panel-body
+      table.table.table-bordered
+        thead
+          tr
+            td #No
+            td Username
+            td Email
+            td FullName
+            td Status
+            td Level
+            td Phone
+        tbody
+          - var i = 0;
+          each usr in f1List
+            - i += 1
+            tr
+              td= i
+              td= usr.username
+              td= usr.email
+              td= usr.full_nm
+              - if(usr.active == true)
+                  td= "Active"
+              - else
+                  td= "Inactive"
+              td= "Level " + (usr.profile.level || 0)
+              td= usr.phone_no || '-'

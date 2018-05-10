@@ -1,0 +1,160 @@
+extends homepage
+
+block content
+  // Page Info
+  .pageInfo.lightSection
+    .pageInfoBg.colorBorder.clearfix
+      .cover
+      .container
+        .row
+          .col-sm-12.text-center
+            .pageTitle
+              h1
+                | About
+                span.textlightBlue  Us
+                span.generalBorder
+            // end of pageTitle
+          // end of col12
+        // end of row
+      // end of container
+    // end of pageInfoBg
+    .container
+      .row
+        .col-sm-12
+          ul.breadcrumb
+            li
+              a(href='#') Home
+            li.active About Us
+          // end of breadcrumb
+        // end of col12
+      // end of row
+    // end of container
+  // end of page info
+  section#comHistory.companyhistory.clearfix.lightSection
+    .sectionWrapper
+      .container
+        .row
+          .sectionTitle.sectionTitleth.text-center
+            h2.sectionHeader
+              | HOW DO YOU EXPLAIN THE
+              span.textlightBlue  HIGH PERCENTAGE OF PROFITS?
+              span.generalBorder
+            p.textGray
+              | In the trend of the world's financial future, electronic money is becoming more and more popular as one of the means of payment in the world. Thus, Birain.Info was founded to provide customers a new electronic payment system that is more comprehensive and convenient than ever. It is electronic currency Bitcoin, one of the most popular electronic money used to exchange and payment in almost all developed countries such as the United States, England, Germany, Australia, ect.
+              | Investments in Birain.Info can offer an opportunity of making daily profit up to 3% per day. In order to take this chance, all you need is to open an trading account to make a transaction at Birain.Info to without any complicated papers and documents.
+              | All the customers’ transactions on the trading platform will be consolidated in the perfect financial reporting system. This system provides them complete information and details about the investments, the interest rates and the commission. We will give codes for each of the customers’ investments so that they can search and compare easily.
+              | The customers’ accounts are absolute secured by SSL security system. The customers can feel safe when making transactions and investments in Birain.Info. Network management system introduces and provides a full list of those who were recommended at different levels of referrals in detail, which helps the customers manage their own systems quickly and efficiently.
+              | The Birain.Info's long-term development plans is to become one of the largest corporations providing bitcoin services, focusing on three main areas which are: providing service on Bitcoin miner, E-commerce by Bitcoin and Bitcoin exchange floor.
+          // end of sec title
+        // end of row
+        #Partner.ourPartner.clearfix.partnerBg
+          .sectionWrapper.blueBgoverly
+            .container
+              .row
+                .PartnerCarouselWrapper
+                  ul.ourPartnerCarousel
+                    li.logoOne.partnerLogo
+                      img(src='/homepage/images/logos/mountain_logo.png', alt='Mountain Logo')
+                    li.Logotw.partnerLogo
+                      img(src='/homepage/images/logos/mountainbike_logo.png', alt='Mountainbike Logo')
+                    li.Logoth.partnerLogo
+                      img(src='/homepage/images/logos/new_logo.png', alt='Logo Logo')
+                    li.Logofr.partnerLogo
+                      img(src='/homepage/images/logos/coffee_chocolate_logo.png', alt='Coffee Chocolate Logo')
+                    li.Logofv.partnerLogo
+                      img(src='/homepage/images/logos/market_logo.png', alt='Coffee Chocolate Logo')
+                  // end of partnerCarousel
+                // end of partnerCarosul
+              // end of row
+            // end of container
+          // end of sectionWrapper
+        // end of ourPartner
+        section#executiveService.executive.section.colorBorder.clearfix.lightSection
+          .sectionWrapper
+            .container
+              .row
+                .col-sm-7.col-md-offset-5
+                  .CallingBack
+                    .sectionTitle.text-left
+                      h1.sectionHeader
+                        | Request for
+                        span.textlightBlue  Calling Back
+                        span.generalBorder
+                    // end of sectoinTitle
+                    .description.exe_text
+                      p
+                    // end of description
+                    //.opening_text
+                      h3
+                        | opening
+                        span.textlightBlueUpper Time :
+                      p
+                        | 9.00am-2.00pm (sat-fri)
+                        br
+                        |  10.00am-2.00pm (sun)
+                    // end of opening_text
+                  // end of callingBack
+                // end of col7
+              // end of row
+            // end of container
+            .secBar
+            // end of secBar
+            .executiveContact
+              .cover
+              .container
+                .row
+                  .col-sm-5
+                    .executive_img
+                      img(src='/homepage/images/media/big_man.png', alt='Big Man')
+                    // end of executive
+                  // end of col5
+                  .col-sm-4
+                    .contact-form-right.mainContactForm
+                      form(method='post')
+                        .row
+                          .col-sm-12
+                            .form-group
+                              span.input.input_hola
+                                input#inputTextName.input_field.input_field_hola(type='text', name='name', required='')
+                                label.input_label.input_label_hola.input_label_hola_color(for='inputTextName')
+                                  span.input_label_content.input_label_content_hola
+                                    | Name
+                                    span.required *
+                              // end of input
+                            // end of form group
+                            .form-group
+                              span.input.input_hola
+                                input#email.input_field.input_field_hola(type='text', name='email', required='')
+                                label.input_label.input_label_hola.input_label_hola_color(for='email')
+                                  span.input_label_content.input_label_content_hola
+                                    | E-mail
+                                    span.required *
+                              // end of input
+                            // end of form group
+                            .form-group
+                              span.input.input_hola
+                                input#inputTextSubject.input_field.input_field_hola(type='text', name='subject', required='')
+                                label.input_label.input_label_hola.input_label_hola_color
+                                  span.input_label_content.input_label_content_hola Subject :
+                              // end of input
+                            // end of form group
+                            .form-group
+                              span.input.input_hola
+                                textarea.input_field.input_field_hola.newsletterTextarea(required='')
+                                label.input_label.input_label_hola.input_label_hola_color
+                                  span.input_label_content.input_label_content_hola Message :
+                              // end of input
+                            // end of form group
+                            button.btn.btn-lightBlue.sendMessage(data-text='Send Message') Send Message
+                          // end of col12
+                        // end of row
+                      // end of form
+                    // end of contactformright
+                  // end of col4
+                // end of row
+              // end of container
+            // end of executiveContact
+          // end of sectionWrapper
+        // end of executive
+        // Main Footer
+

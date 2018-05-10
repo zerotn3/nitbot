@@ -1,0 +1,448 @@
+extends homepage
+
+block content
+  section.cd-hero
+    ul.cd-hero-slider.autoplay
+      li.selected
+        .cd-full-width
+          .container
+            h2.dotBlueborder
+              | Your Best Choice For
+              br
+              span.textlightBlue  Investment
+            a.btn.generalBtn(href='service',  data-text='Service') Service
+            a.btn.btn-default(href='signup',  data-text='Register') Register
+          // .cd-full-width
+        // end of container
+      li
+        .cd-full-width
+          .container
+            h2.dotBlueborder
+              | How do you explain the
+              br
+              span.textlightBlue  high percentage of profits?
+            a.btn.generalBtn(href='service',  data-text='Service') Service
+            a.btn.btn-default(href='signup',  data-text='Register') Register
+          // .cd-full-width
+        // end of container
+      li
+        .cd-full-width
+          .container.text-center
+            h2
+              span.textBisque We are
+              |  trusted
+              span.textBisque  in Your
+              br
+              | Business
+            a.btn.generalBtn(href='service',  data-text='Service') Service
+            a.btn.btn-default(href='signup',  data-text='Register') Register
+          // .cd-full-width
+        // end of container
+      li
+        .cd-full-width
+          .container
+            h2.dotBlueborder
+              | We are always
+              br
+              span.textlightBlue  Ahead
+            a.btn.generalBtn(href='service',  data-text='Service') Service
+            a.btn.btn-default(href='signup',  data-text='Register') Register
+          // .cd-full-width
+        // end of container
+      li
+        .cd-full-width
+          .container.text-center
+            h2.textBisque
+              | We Have
+              span.textlightBlue  Talented Team
+            a.btn.generalBtn(href='service',  data-text='Service') Service
+            a.btn.btn-default(href='signup',  data-text='Register') Register
+          // .cd-full-width
+        // end of container
+    // .cd-hero-slider
+    .cd-slider-nav
+      nav.container-fluid
+        span.cd-marker.item-1
+        ul
+          li.selected
+            a(href='#0')
+              span.heroflaticon.flaticon-time
+              span.slideTxt  Super Fast Work
+          li
+            a(href='#0')
+              span.heroflaticon.flaticon-shapes
+              span.slideTxt  Great network
+          li
+            a(href='#0')
+              span.heroflaticon.flaticon-hands
+              span.slideTxt  best planner
+          li
+            a(href='#0')
+              span.heroflaticon.flaticon-megaphone
+              span.slideTxt  awesome support
+          li
+            a(href='#0')
+              span.heroflaticon.flaticon-lock
+              span.slideTxt  money sequrity
+      // end of nav
+    // .cd-slider-nav
+  // .cd-hero
+  section#guru.financeGuru.section.clearfix.lightSection
+    .sectionWrapper
+      .container
+        .row
+          .col-sm-5
+            .video_widget
+              img.img-shadow(src='/homepage/images/video-thumb.jpg', alt='')
+              a.lightbox-image(href='https://vimeo.com/110874487')
+                i.flaticon.flaticon-arrows
+          // end of col6
+          .col-sm-7
+            .FinanceGuruDetails
+              .sectionTitle.text-left
+                h1.sectionHeader
+                  | We are
+                  span.textlightBlue  BITRAIN
+                  span.generalBorder
+              // end of sec title
+              .description.gurupara
+                p
+                  | Bitrain is a financial investment model.It is a wonderful combination of matrix and maketing mmo.
+                  | With the best secured -investment and smart use Bitcoin currency in transactions.
+                  | Bitrain will help you earn money more effectively and enrich your pocket genuinely
+              // end of description
+              ul.gurulist
+                li
+                  i.flaticon.flaticon-dot-inside-a-circle
+                  |  Buying shares of equipment once - you get the profit lifetime.
+                li
+                  i.flaticon.flaticon-dot-inside-a-circle
+                  |  We have a strong marketing and income offered by us is warranted.
+                li
+                  i.flaticon.flaticon-dot-inside-a-circle
+                  |  All transactions are transmitted through the encrypted connection.
+              // end of
+              //a.btn.btn-lightBlue(href='#', data-text='Get a Call') Get a Call
+            // end of FinanceGuruDetails
+          // end of col6
+        // end of row
+      // end of container
+    // end of sectionWrapper
+  // end of finance guru
+  section#ourPlanningtw.OurPlanningstw.section.gallery-section.clearfix.lightSection
+    .sectionWrapper
+      .container
+        .row
+          .col-sm-12
+            .sectionTitletw.text-center.PlanningTitle
+              span.dotOrangeBorder
+              h1.sectionHeader
+                | Our
+                span.textlightBlue  Plannings
+              p
+                | This plan was engineered with one principle in mind.
+                br
+                |  Maintain the gold point between profitability & stability.
+            // end of sectionTitle
+          // end of col12
+        // end of row
+        .carousel-outer
+          .gallery-carousel.singleTtemCarousel
+            .default-gallery-item
+              .inner-box
+                figure.image-box
+                  img(src='/homepage/images/planning/planning_09.jpg', alt='Planning Image')
+                .overlay_content
+                  .OverlayContent
+                    span.flaticonPlanning.flaticon-money-6
+                    h3
+                      a(href='service')  Profits attractive.
+                    //p
+                      | Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Vestibulum
+                      | Lorem
+                  // end of overlay content
+                // end overlay centent
+              // end of inner box
+            // end of default gallery
+            .default-gallery-item
+              .inner-box
+                figure.image-box
+                  img(src='/homepage/images/planning/planning_10.jpg', alt='')
+                .overlay_content
+                  .OverlayContent
+                    span.flaticonPlanning.flaticon-money-5
+                    h3
+                      a(href='service') Referral bonus.
+                    //p
+                      | Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Vestibulum
+                      | Lorem
+                  // end of overlay content
+                // end overlay centent
+              // end of innerbox
+            // end of default gallery item
+            .default-gallery-item
+              .inner-box
+                figure.image-box
+                  img(src='/homepage/images/planning/planning_11.jpg', alt='')
+                .overlay_content
+                  .OverlayContent
+                    span.flaticonPlanning.flaticon-coins
+                    h3
+                      a(href='service') Transaction fast.
+                    //p
+                      | Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Vestibulum
+                      | Lorem
+                  // end of overlay content
+                // end overlay centent
+              // end of inner box
+            // end of default gallery item
+            .default-gallery-item
+              .inner-box
+                figure.image-box
+                  img(src='/homepage/images/planning/planning_09.jpg', alt='')
+                .overlay_content
+                  .OverlayContent
+                    span.flaticonPlanning.flaticon-money-6
+                    h3
+                      a(href='service') Absolute security.
+                    //p
+                      | Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Vestibulum
+                      | Lorem
+                  // end of overlay content
+                // end overlay centent
+              // end of inner box
+            // end of default gallery item
+            .default-gallery-item
+              .inner-box
+                figure.image-box
+                  img(src='/homepage/images/planning/planning_11.jpg', alt='')
+                .overlay_content
+                  .OverlayContent
+                    span.flaticonPlanning.flaticon-coins
+                    h3
+                      a(href='service') Fully automatic.
+                    //p
+                      | Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Vestibulum
+                      | Lorem
+                  // end of overlay content
+                // end overlay centent
+              // end of inner box
+            // end of default gallery item
+          // end of gallery-carousel
+        // end of carousel-outer
+      // end of container
+    // end of sectionWrapper
+  // end of OurPlannings
+  section#ourTeam.OurTeamtw.clearfix.lightSection
+    .sectionWrapper
+      .container
+        .row
+          .col-sm-5
+            .sectionTitletw.OurTeamTitle
+              span.dotOrangeBorder
+              h1.sectionHeader
+                | Our
+                span.textlightBlue Team
+              p
+                | We work to make your business start effectively working for you. Meet the financial and
+                | marketing specialists.
+            // end of sectionTitle
+            .TeamSocialShare
+              ul.TeamSocial.socialNav.socialShare
+                li.facebook
+                  a(href='#')
+                    i.fa.fa-facebook(aria-hidden='true')
+                li.twitter
+                  a(href='#')
+                    i.fa.fa-twitter(aria-hidden='true')
+                li.pinterest
+                  a(href='#')
+                    i.fa.fa-pinterest(aria-hidden='true')
+                li.tumblr
+                  a(href='#')
+                    i.fa.fa-tumblr(aria-hidden='true')
+              // end of headertwSocial
+            // end of teamSocialShare
+          // end of col5
+          .col-sm-7
+            .ourTeamCarousel.blueDots
+              .singleTeamMembertw
+                .memberAvatar
+                  img(src='/homepage/images/team/team_member_05.jpg', alt='Team Member')
+                // end of member img
+                .memberDetails.memberDetailstw.text-left
+                  h3.memberName
+                    a(href='#') Romeo Alvarez
+                  span.memberJob CEO
+                // TeamDetails end
+              // end of singleteamMember
+              .singleTeamMembertw
+                .memberAvatar
+                  img(src='/homepage/images/team/team_member_07.jpg', alt='Team Member')
+                // end of member img
+                .memberDetails.memberDetailstw.text-left
+                  h3.memberName
+                    a(href='#') John Doe
+                  span.memberJob Main Founder
+                // TeamDetails end
+              // end of singleteamMember
+              .singleTeamMembertw
+                .memberAvatar
+                  img(src='/homepage/images/team/team_member_04.jpg', alt='Team Member')
+                // end of member img
+                .memberDetails.memberDetailstw.text-left
+                  h3.memberName
+                    a(href='#') Steven Monroe
+                  span.memberJob Main Founder
+                // TeamDetails end
+              // end of singleteamMember
+              .singleTeamMembertw
+                .memberAvatar
+                  img(src='/homepage/images/team/team_member_06.jpg', alt='Team Member')
+                // end of member img
+                .memberDetails.memberDetailstw.text-left
+                  h3.memberName
+                    a(href='#') Elena Silva
+                  span.memberJob Main Founder
+                // TeamDetails end
+              // end of singleteamMember
+            // end of ourTeamCarousel
+          // end of col7
+        // end of row
+      // end of container
+    // end of sectionWrapper
+  // end of our team
+  section#BFinance.BestFinance.BestFinancetw.clearfix
+    .sectionWrapper.bgOverly.finance_counter
+      .container
+        .row
+          .col-sm-12
+            .sectionTitletw.bfinancetw.text-center
+              span.dotOrangeBorder
+              h1.sectionHeader.headWhite
+                | Our Best
+                span.textlightBlue  Finance
+            // end of sectionTitle
+          // end of col12
+        // end of row
+        .row
+          .padding-left-20(style = "padding-left: 240px;")
+            .btcwdgt-chart.text-center
+          // end of counter-outer
+        // end of row
+      // end of container
+    // end of sectionWrapper
+  // end of BestFinance
+  section#Information.MoreInformation.section.clearfix.grayBgtw
+    .sectionWrapper
+      .container
+        .row
+          .col-sm-12
+            .sectionTitletw.text-center
+              span.dotOrangeBorder
+              h1.sectionHeader
+                | More
+                span.textlightBlue  Information
+              p
+            // end of sectionTitletw
+          // end of col12
+        // end of row
+        .row
+          .col-sm-6
+            .InfoTabFrature
+              // Nav tabs
+              ul.nav.nav-tabs.featureNav(role='tablist')
+                li.active(role='presentation')
+                  a(href='#nulla', aria-controls='nulla', role='tab', data-toggle='tab') What is bitcoin ?
+                li(role='presentation')
+                  a(href='#lipsum', aria-controls='lipsum', role='tab', data-toggle='tab') Our Vission
+                li(role='presentation')
+                  a(href='#asnit', aria-controls='asnit', role='tab', data-toggle='tab') Safe & Secure
+              // end of nav tabs
+              // Tab panes
+              .tab-content.featureContent.clearfix
+                #nulla.tab-pane.fade.in.active(role='tabpanel')
+                  img(src='/homepage/images/media/bitcoin.png', alt='Feature Img')
+                  .featureListRht
+                    p
+                      | In non-technical language, Bitcoin is a digital currency in which
+                      | transactions can be performed without the need for a credit card or central
+                      | bank. It's designed to enable users to send money over the Internet in a
+                      | very simple and efficient way.
+                  // end of feature list right
+                // end of tabpanel
+                #lipsum.tab-pane.fade(role='tabpanel')
+                  p
+                    | The Bitrain's long-term development plans is to become one of the largest
+                    | corporations providing bitcoin services, focusing on three main areas which are:
+                    | providing service on Bitcoin miner, E-commerce by Bitcoin and Bitcoin exchange
+                    | floor.
+                // end of tabpanel
+                #asnit.tab-pane.fade(role='tabpanel')
+                  p
+                    | Dedicated servers, secured with AVG antivirus and malware program. All
+                    | information processed on our website is encrypted with EV SSL SGC and powered by
+                    | GeoTrust.
+                // end of tabpanel
+              // end of tab-content
+            // end of InfoTabFrature
+          // end of col6
+          .col-sm-6
+            #accordianShortCode.accordianShortCode
+              .accordionRow.toggleRow.triggerRow
+                a.accordion-toggle3.WhoAreWetrigger.activeLine(href='#')
+                  | What's the minimum
+                  | withdrawal amount?
+                .accordion-content.triggerMenu
+                  p Minimum withdrawal amount is 0.3 BTC.
+                // end of accordian-content
+              // end of accordian row
+              .accordionRow.toggleRow.triggerRow
+                a.accordion-toggle3.WhoAreWetrigger(href='#') How do I withdraw my funds?
+                .accordion-content.triggerMenu
+                  p
+                    | This is very simple. Just click over to the withdrawal section of your personal
+                    | account to initiate a withdrawal.
+                // end of accordian-content
+              // end of accordian row
+              .accordionRow.toggleRow.triggerRow
+                a.accordion-toggle3.WhoAreWetrigger(href='#')
+                  | Where can I see my earned
+                  | interests?
+                .accordion-content.triggerMenu
+                  p
+                    | You can view all your accrued interest in your personal account. It is applied to
+                    | your account balance in real time, and you can withdraw it at any time.
+                // end of accordian-content
+              // end of accordian row
+            // end of accordianShortCode
+          // end of col6
+        // end of row
+      // end of container
+    // end of sectionWrapper
+  // end of moreInformation
+  section#newslatter.financialNewsletters.clearfix
+    .NewslettersBlueBg
+      .newsWhiteBg
+    .fNewsletters
+      .container
+        .row
+          .FinancNewsletterBg
+            .col-sm-offset-1.col-sm-7
+              .sectionTitle
+                h2
+                  | ARE YOU STILL NOT
+                  span.textlightBlue  REGISTERED ? <br> It would not take a lot of time...
+              // end of
+            // end of col8
+            .col-sm-4
+              a.btn.generalBtn.newsBtn(href='#')
+                i.flaticon.flaticon-send-message-button
+                span.newsTxt  Newsletter
+            // end of col4
+          // end of FinancNewsletterBg
+        // end of row
+      // end of container
+    // end of f newsletters
+  // end of financialNewsletters
+

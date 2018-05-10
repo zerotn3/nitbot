@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const env = process.env.NODE_ENV || "development";
+const helper = require('../helpers/helper');
+const transferBTCFromOverflowToWithdrawn = helper.transferBTCFromOverflowToWithdrawn;
+const nodeMailer = require('nodemailer');
+
+if (env == 'development') {
+    dotenv.load({ path: '.env' });
+}
+
+const mailer = nodeMailer.createTransport({
+    service: 'SendGrid',
+    auth: {
+        user: process.env.SENDGRID_USER,
+        pass: process.env.SENDGRID_PASSWORD
+    }
+});
+
+const sendEmail = (opts) => {
+    return new Promise((resolve, reject) => {
+        const mailOpts = {
+            to: opts.to,
+            from: opts.from || process.env.EMAIL_FROM,
+            subject: opts.subject,
+        };
+
+        if (opts.content) {
+            mailOpts.text = opts.content;
+        } else if (opts.html) {
+            mailOpts.html = opts.html;
+        }
+
+        mailer.sendMail(mailOpts, (err, res) => {
+            if (!err) {
+                resolve(res);
+            } else {
+                reject(err);
+            }
+        });
+    });
+};
+
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI, (error) => {
+    if (error) {
+        console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
+        process.exit();
+    }
+
+    transferBTCFromOverflowToWithdrawn()
+        .then(() => {
+            sendEmail({
+                to: 'luc@ltv.vn',
+                subject: '[BitRain] Transfer BTC from Overflow to Withdrawn',
+                html: `Transfer completed at ${new Date()}`,
+            })
+                .then(() => {
+                    console.log('[Success] Transfer completed');
+                });
+        })
+        .catch((err) => {
+            sendEmail({
+                to: 'luc@ltv.vn',
+                subject: '[BitRain] Transfer BTC from Overflow to Withdrawn',
+                html: `Transfer was not completed at ${new Date()}, error: ${err.message}`,
+            })
+                .then(() => {
+                    console.log('[Error] Could not transfer btc');
+                });
+        });
+});

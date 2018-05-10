@@ -1,0 +1,154 @@
+extends layout
+
+block css_plugins
+  link(rel='stylesheet', href='/global/vendor/treant/Treant.css?v=1')
+  link(rel='stylesheet', href='/assets/css/treant-referrals.css?v=1')
+  link(rel='stylesheet', href='/global/vendor/perfect-scrollbar/perfect-scrollbar.css')
+
+block content
+  .row
+
+    .col-md-12
+      - var i = 0;
+        each w in wallets
+          - i += 1
+          .panel.panel-bordered.animation-scale-up.wallet(style='animation-fill-mode: backwards; animation-duration: 250ms; animation-delay: 0ms;')
+            .panel-heading
+              .panel-title #{w.name}
+              .panel-actions.hidden-xs-
+            if(w.name == 'Upgrade Wallet')
+              .panel-body
+                .col-md-1.col-xs-2
+                  img(src='/assets/images/level_wallet/bitcoin-' + parseInt(user.profile.level) + '.png', alt='', height="42" width="42")
+                .col-md-1.col-xs-2
+                  .label.label-default.amount #{w.amount} BTC
+                  .label.label-default.link
+                    a(href=w.ext.link) #{w.ext.text}
+            else
+              .panel-body
+                .col-md-1.col-xs-2
+                  img(src='/assets/images/wallet_' + i + '.png', alt='', height="42" width="42")
+                .col-md-11.col-xs-10
+                  .label.label-default.amount #{w.amount} BTC
+                  .label.label-default.link
+                  a(href=w.ext.link) #{w.ext.text}
+
+    .col-md-12
+      .panel.panel-bordered.animation-scale-up.wallet
+        .panel-heading
+          .panel-title My Referrals
+          .panel-actions.hidden-xs-down
+        .panel-body
+          #referrals
+    // Modal
+    #exampleFormModal.modal.fade(aria-hidden='false', aria-labelledby='exampleFormModalLabel', role='dialog', tabindex='-1')
+      .modal-dialog
+        form#createAccountOverflow.modal-content(autocomplete='off', action='/account/createAccountOverflow', method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4#exampleFormModalLabel.modal-title(style='color: white;') Create New Overflow Account
+          .modal-body
+            .form-group.form-material(data-plugin='formMaterial')
+              label.form-control-label(for='ovf_user_id') New User ID:
+              input.form-control(type='text', name='ovf_user_id',id = 'ovf_user_id', placeholder='user id overflow account', minlength=5, required)
+            .form-group
+              label.form-control-label() <b>Select Wallet To Create (0.3 BTC) :</b>
+              select#wallet_addr.form-control(name="wallet_addr", required)
+                option(value='') ===Select Wallet===
+                option(value='WD') Withdrawn
+                option(value='DR') Direct
+            .form-group.form-material(data-plugin='formMaterial')
+              label.form-control-label(for='password2') New Password 1
+              input#password_new.form-control(type='password', name='password_new', placeholder='New password 1', required)
+            .form-group.form-material(data-plugin='formMaterial')
+              label.form-control-label(for='password2') New Password 2
+              input#password_new2.form-control(type='password', name='password_new2', placeholder='New password 2', required)
+            .form-group.form-material(data-plugin='formMaterial')
+              label.form-control-label(for='password2') Password 2nd
+              input#password2.form-control(type='password', name='password2', placeholder='Password 2', required)
+            button.btn.btn-primary.text-align-center(type='submit') Create Sub Account
+        // End Modal
+  block js_plugins
+    script(src='/global/vendor/treant/raphael.js')
+    script(src='/global/vendor/treant/Treant.js')
+    script(src='/global/vendor/jquery-easing/jquery.easing.js')
+    script(src='/assets/js/treant-referrals.js')
+
+    script.
+      if (#{needRefUser} == true)
+        $(document).ready(function () {
+          $('#exampleFormModal').modal('show');
+        });
+
+      $('#wallet_addr').change(function () {
+        var btcreq = "";
+        if ($('#wallet_addr').val() == 'WD')
+          btcreq = #{user.wallet.withdrawn};
+        else if ($('#wallet_addr').val() == 'DR')
+          btcreq = #{user.wallet.direct};
+        if (btcreq < 0.3) {
+          alert("Not enough BTC to upgrade. Please select other wallet.");
+          $('#wallet_addr').val('');
+        }
+      });
+  script.
+    var data = !{JSON.stringify(treeData).replace(/<\//g, "<\\/")};
+    var treeData = [];
+    var objs = {};
+
+    var rootObj = {
+      text: {
+        name: data[0].text.name,
+        title: data[0].text.title,
+        contact: data[0].text.contact,
+      },
+      image: data[0].image,
+      HTMLid: data[0].HTMLid
+    };
+
+    treeData.push(rootObj);
+    objs[rootObj.HTMLid] = rootObj;
+
+    for (var i = 1; i < data.length; i++) {
+      var obj = {
+        text: {
+          name: data[i].text.name,
+          title: data[i].text.title,
+          contact: data[i].text.contact
+        },
+        image: data[i].image,
+        HTMLid: data[i].HTMLid,
+        parent: data[i].parent.HTMLid
+      };
+      objs[obj.HTMLid] = obj;
+      treeData.push(obj);
+    }
+
+    for (i = 1; i < data.length; i++) {
+      treeData[i].parent = objs[treeData[i].parent];
+    }
+
+    treeData.unshift({
+      container: "#referrals",
+      rootOrientation: 'NORTH', // NORTH || EAST || WEST || SOUTH
+      // levelSeparation: 30,
+      siblingSeparation: 20,
+      subTeeSeparation: 60,
+      scrollbar: "fancy",
+
+      connectors: {
+        type: 'step'
+      },
+      node: {
+        HTMLclass: 'nodeExample1'
+      }
+    });
+
+    $(document).ready(function () {
+      new Treant(treeData);
+      setTimeout(function () {
+        showAvatarInTree();
+      }, 100);
+    });

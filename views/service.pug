@@ -1,0 +1,202 @@
+extends homepage
+
+block content
+  .pageInfo.lightSection
+    .pageInfoBg.colorBorder.clearfix
+      .cover
+      .container
+        .row
+          .col-sm-12.text-center
+            .pageTitle
+              h1
+                | Our
+                span.textlightBlue  Service
+                span.generalBorder
+            // end of pageTitle
+          // end of col12
+        // end of row
+      // end of container
+    // end of pageInfoBg
+    .container
+      .row
+        .col-sm-12
+          ul.breadcrumb
+            li
+              a(href='#') Home
+            li.active Service
+          // end of breadcrumb
+        // end of col12
+      // end of row
+    // end of container
+  // end of page info
+  section#Planning.ourPlanning.ourPlanningtw.clearfix.lightSection
+    .sectionWrapper
+      .container
+        .row
+          .col-sm-12
+            .sectionTitle.sectionTitleth.text-center
+              h1.sectionHeader
+                | How to make money
+                span.textlightBlue  The Bitrain.info
+                span.generalBorder
+              p.textGray
+                | Only invest once, the system runs automatically, the work of you is developing the system.
+            // end of sectionTitle
+          // end of col12
+        // end of row
+        .row
+          .col-sm-3
+            .singlePlanning
+              .PlanningImg
+                img.img_radius(src='/homepage/images/service/register.png', alt='Register')
+                a(href='signup')
+                  i.icon.boltIcon
+              // end of planning img
+              .Planningcontent.contentTitle.smallTitletw.text-center
+                h3
+                  a(href='signup')
+                    span.textlightBlue Register
+                    |  User
+                .description.planningPara.smallParatw
+                  p Register at Bitrain.info.
+                // end of Planning
+              // end of single Planning
+            // planmember end
+          // col-md-3 end
+          .col-sm-3
+            .singlePlanning
+              .PlanningImg
+                img.img_radius(src='/homepage/images/service/deposit.png', alt='Retirement Planning')
+                a(href='signup')
+                  i.icon.boltIcon
+              // end of planning img
+              .Planningcontent.contentTitle.smallTitletw.text-center
+                h3
+                  a(href='retirement-planning.html')
+                    span.textlightBlue Deposit
+                    |  Bitcoin
+                .description.planningPara.smallParatw
+                  p Deposit to upgrade level within 24h.
+                // end of Planning
+              // end of single Planning
+            // planmember end
+          // col-md-3 end
+          .col-sm-3
+            .singlePlanning
+              .PlanningImg
+                img.img_radius(src='/homepage/images/service/teamwork.png', alt='children Planning')
+                a(href='signup', target='blank')
+                  i.icon.boltIcon
+              // end of planning img
+              .Planningcontent.contentTitle.smallTitletw.text-center
+                h3
+                  a(href='children-planning.html')
+                    span.textlightBlue Build
+                    |  Your Team
+                .description.planningPara.smallParatw
+                  p Develop & help your project.
+                // end of Planning
+              // end of single Planning
+            // planmember end
+          // col-md-3 end
+          .col-sm-3
+            .singlePlanning
+              .PlanningImg
+                img.img_radius(src='/homepage/images/service/earning.png', alt='insurance Planning')
+                a(href='signup')
+                  i.icon.boltIcon
+              // end of planning img
+              .Planningcontent.contentTitle.smallTitletw.text-center
+                h3
+                  a(href='insurance-planning.html')
+                    span.textlightBlue Earning
+                    |  Bitcoin
+                .description.planningPara.smallParatw
+                  p Get 190 BTC per month.
+                // end of Planning
+              // end of single Planning
+            // planmember end
+          // col-md-3 end
+        // end of row
+      // end of container
+    // end of sectionWrapper
+  // end of ourPlanning
+  section#newslatter1.financialNewsletters.clearfix
+    .container
+      img(src='/homepage/images/service/howtouse_1a.jpg', alt='insurance Planning')
+  section#newslatter.financialNewsletters.clearfix
+    .container
+      img(src='/homepage/images/service/howtouse_2a.jpg', alt='insurance Planning')
+  // end of financialNewsletters
+  section#CalingBack.requestForcallingBack.colorBorder.clearfix.lightSection
+    .sectionWrapper
+      .container
+        .row
+          .col-sm-6
+            .CallingBackleft.clearfix
+              .sectionTitle.sectionTitleth.text-left
+                h2.sectionHeader
+                  | Request for
+                  span.textlightBlue Calling Back
+                  span.generalBorder
+              // end of sectoinTitle
+              .description.subHeadtxt.smallParatw
+                h6
+                  | For Family
+                  span.textlightBlueUpper Planning:
+                p
+                  | Bitrain is paying for the popularization of ITS Investment program and anyone can be rewarded. To Benefit from this, you have to tell your friends, relatives or Colleagues about the company. If your information is appealing to add, and chúng our trở Investors, an affiliate you Will Be Paid commission! You can even team Build Your Own, attracting new Investors made a special Because We have three-level affiliate program of rewards.
+              // end of description
+              .subHeadtxt
+                h6.pull-left
+                  | opening
+                  span.textlightBlueUpper Time :
+                p.OpningTimes
+                  | 9.00am-2.00pm (sat-fri)
+                  br
+                  | 10.00am-2.00pm (sun)
+              // end of opening_text
+            // end of CallingBackleft
+          // end of col6
+          .col-sm-6
+            .row
+              .CallingBackFormBg.clearfix
+                .col-sm-8
+                  form.form-horizontal.CallBackForm
+                    .form-group
+                      .col-sm-12
+                        input#txtName.form-control.input-md(name='textinput', type='text', placeholder='Your Name', required='')
+                      // end of col12
+                    // end of form group
+                    .form-group
+                      .col-sm-12
+                        input#Emailtw.form-control.input-md(name='textinput', type='email', placeholder='Mail Address', required='')
+                      // end of col12
+                    // end of form group
+                    .form-group
+                      .col-sm-12
+                        input#mobiletw.form-control.input-md(name='mobile', type='text', placeholder='Phone Number', required='')
+                      // end of col12
+                    // end of form group
+                    .form-group
+                      .col-sm-12
+                        select#year.form-control(name='year')
+                          option(value='1') Required field
+                          option(value='1') Male
+                          option(value='1') Female
+                      // end of col12
+                    // end of form group
+                    .form-group
+                      .col-sm-12.text-right
+                        button#lightBluebtn.btn-lightBlue.sendMessage(name='Sendbtn') Send
+                      // end of col12
+                    // end of form group
+                  // end of form-horizontal
+                // end of col8
+              // end of CallingBackFormBg
+            // end of row
+          // end of col6
+        // end of row
+      // end of container
+    // end of sectionWrapper
+  // end of requestcall

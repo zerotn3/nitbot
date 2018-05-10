@@ -1,0 +1,248 @@
+extends ../layout
+
+block page_css
+  link(rel='stylesheet', href='/global/vendor/datatables-bootstrap/dataTables.bootstrap.css')
+  link(rel='stylesheet', href='/assets/css/datatables.css')
+  link(rel='stylesheet', href='/css/table.css')
+  style.
+    .form-group label.form-control-label {
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+block content
+  .row
+    .col-xl-3.col-md-6.col-xs-12
+      // Widget
+      .card.card-block.p-30.bg-blue-600
+        .card-watermark.darker.font-size-60.m-15
+          img(src='/assets/images/wallet_1a.png', alt='', height="100" width="100")
+        .counter.counter-md.counter-inverse.text-xs-left
+          .counter-number-group
+            span.counter-number #{user.wallet.withdrawn || 0}
+            span.counter-number-related.text-capitalize  BTC
+          .counter-label.text-capitalize Withdraw Wallet
+      // End Widget
+    .col-xl-3.col-md-6.col-xs-12
+      // Widget
+      .card.card-block.p-30.bg-red-600
+        .card-watermark.darker.font-size-60.m-15
+          img(src='/assets/images/wallet_2a.png', alt='', height="100" width="100")
+        .counter.counter-md.counter-inverse.text-xs-left
+          .counter-number-group
+            span.counter-number #{user.wallet.direct || 0}
+            span.counter-number-related.text-capitalize  BTC
+          .counter-label.text-capitalize Direct Wallet
+    .col-xl-3.col-md-6.col-xs-12
+      // Card
+      .card.card-block.p-30.bg-green-600
+        .card-watermark.darker.font-size-60.m-15
+          img(src='/assets/images/wallet_3a.png', alt='', height="100" width="100")
+        .counter.counter-md.counter-inverse.text-xs-left
+          .counter-number-group
+            span.counter-number #{user.wallet.upgrade || 0}
+            span.counter-number-related.text-capitalize  BTC
+          .counter-label.text-capitalize
+            a(href='#FormModalUpgradeWallet', role='', data-toggle='modal') Upgrade Wallet
+        // End Card
+    .col-xl-3.col-md-6.col-xs-12
+      // Card
+      .card.card-block.p-30.bg-purple-600
+        .card-watermark.lighter.font-size-60.m-15
+          img(src='/assets/images/wallet_4a.png', alt='', height="100" width="100")
+          //i.icon.md-image(aria-hidden='true')
+        .counter.counter-md.counter-inverse.text-xs-left
+          .counter-number-wrap.font-size-30
+            span.counter-number #{user.wallet.overflow || 0}
+            span.counter-number-related.text-capitalize  BTC
+          .counter-label.text-capitalize Overflow Wallet
+      // End Widget
+    .col-xl-6.col-md-6.col-xs-12
+      .panel
+        header.panel-heading
+          .panel-actions
+          h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+            i.icon.md-book(aria-hidden='true')
+            | Bitrain Withdrawn
+        .panel-body
+          form#requestWithdrawnform.form.form-vertical(action="/account/requestWithdrawn", method='post')
+            input(type='hidden', name='_csrf', value=_csrf)
+            .form-group.control-group
+              label.form-control-label Select Wallet
+              .controls
+                select#wallet_addr.form-control(name="wallet_addr", required)
+                  option(value='withdrawn') Withdrawn
+                  option(value='direct') Direct
+            .form-group.control-group
+              label.form-control-label Amount BTC:
+              .controls
+                input.form-control(type='text', name='btc_req', id='btc_req', placeholder='E.g 0.01, 0.1, 1', required)
+            .form-group.control-group
+              label.form-control-label Password 2:
+              .controls
+                input.form-control(type='password', name='password2', id='password_2', placeholder='Enter password 2', required)
+            .form-group.control-group
+              .controls
+                button.btn.btn-primary(type='submit')
+                  | Withdrawn
+      .panel
+        header.panel-heading
+          .panel-actions
+          h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+            i.icon.md-book(aria-hidden='true')
+            | Bitrain Withdraw History
+        .panel-body
+          table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+            thead.well.fixed_headers
+              tr
+                th.text-lg-center No.
+                th.text-lg-center Date
+                th.text-lg-center Amount
+                th.text-lg-center Wallet Name
+                th.text-lg-center Status
+            tbody.well
+              - var i = 0;
+                each req in requestBtc
+                  - i += 1
+                  tr
+                    td= i
+                    td= moment(req.createdAt).format(DATE_FORMAT)
+                    td= req.btc_req
+                    td= req.walletname
+                    td= req.status_req
+
+    .col-xl-6.col-md-6.col-xs-12
+      .panel
+        header.panel-heading
+          .panel-actions
+          h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+            i.icon.md-book(aria-hidden='true')
+            | Bitrain Transfer BTC (Only Transfer Direct Wallet: #{user.wallet.direct || 0})
+        .panel-body
+          form#transferBtcform.form.form-vertical(autocomplete='off', action="/account/transferBtc", method='post')
+            input(type='hidden', name='_csrf', value=_csrf)
+            .control-group
+              .controls
+                input.form-control(type='hidden', name='upgrade_wallet', id="upgrade_wallet", value=user.wallet.direct, disabled)
+            .form-group.control-group
+              label.form-control-label User ID Received:
+              .controls
+                input.form-control(type='text', name='user_id_received', id="user_id_received", placeholder="User id received...", required)
+            .form-group.control-group
+              label.form-control-label Amount Transferred:
+              .controls
+                input.form-control(type='text', name='amount_transfer', id="amount_transfer", placeholder="E.g 0.01, 0.1, 1", required)
+            .form-group.control-group
+              label.form-control-label Password 2:
+              .controls
+                input.form-control(type='password', name='password2', id="password2", placeholder='Enter password 2', required)
+            .form-group.control-group
+              .controls
+                button.btn.btn-primary(type='submit')
+                  | Submit Transfer
+
+    .col-xl-6.col-md-6.col-xs-12
+      .panel
+        header.panel-heading
+          .panel-actions
+          h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+            i.icon.md-book(aria-hidden='true')
+            | Bitrain Transfer History
+        .panel-body
+          table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+            thead.well
+              tr
+                th.text-lg-center No.
+                th.text-lg-center User Received
+                th.text-lg-center Date
+                th.text-lg-center Amount
+                th.text-lg-center Status
+            tbody.well
+              - var i = 0;
+                each trs in transferBtc
+                  - i += 1
+                  tr
+                    td= i
+                    td= trs.username_rec
+                    td= moment(trs.createdAt).format(DATE_FORMAT)
+                    td= trs.amounTransder
+                    td= trs.status_trans
+    .col-xl-12.col-md-12.col-xs-12
+      .panel
+        header.panel-heading
+          .panel-actions
+          h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+            i.icon.md-book(aria-hidden='true')
+            | Bitrain Earning History
+        .panel-body
+          table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+            thead.well
+              tr
+                th.text-lg-center No.
+                th.text-lg-center Wallet Name
+                th.text-lg-center Date
+                th.text-lg-center Amount
+            tbody.well
+              - var i = 0;
+                each htr in walletTransactions
+                  - i += 1
+                  tr
+                    td= i
+                    td= htr.wallet
+                    td= moment(htr.createdAt).format(DATE_FORMAT)
+                    td= htr.amount
+    // Popup for upgrade wallet
+  #FormModalUpgradeWallet.modal.fade(aria-hidden='false', aria-labelledby='exampleFormModalLabel', role='dialog', tabindex='-1')
+    .modal-dialog
+      form#showlistwallet.modal-content(autocomplete='off', action='/account/createAccountOverflow', method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .panel-body
+          .col-md-2.col-xs-2
+            img(src='/assets/images/level_wallet/bitcoin-1.png', alt='', height="42" width="42")
+          .col-md-10.col-xs-10
+            .label.label-default.amount Upgrade Wallet Level 2
+            .label.label-default.link
+            - if(user.wallet.keepUpgrade.UPGRD_LVL_2 > 0)
+              a(href='/')  You have #{user.wallet.keepUpgrade.UPGRD_LVL_2}  BTC upgrade on floor 2.
+              | You need #{(0.2 - (user.wallet.upgrade || 0)).toFixed(2)} BTC upgrade to upgrade Level 2.
+            - else
+              a(href='/') You have #{user.wallet.keepUpgrade.UPGRD_LVL_2} BTC upgrade on floor 2.
+          .panel-body
+          .col-md-2.col-xs-2
+            img(src='/assets/images/level_wallet/bitcoin-2.png', alt='', height="42" width="42")
+          .col-md-10.col-xs-10
+            .label.label-default.amount Upgrade Wallet Level 3
+            .label.label-default.link
+            - if(user.wallet.keepUpgrade.UPGRD_LVL_3 > 0)
+              a(href='/')  You have #{user.wallet.keepUpgrade.UPGRD_LVL_3} BTC upgrade on floor 3.
+              | You need #{(0.4 - (user.wallet.upgrade || 0)).toFixed(2)} BTC upgrade to upgrade Level 3.
+            - else
+              a(href='/') You have #{user.wallet.keepUpgrade.UPGRD_LVL_3} BTC upgrade on floor 3.
+          .panel-body
+          .col-md-2.col-xs-2
+            img(src='/assets/images/level_wallet/bitcoin-3.png', alt='', height="42" width="42")
+          .col-md-10.col-xs-10
+            .label.label-default.amount Upgrade Wallet Level 4
+            .label.label-default.link
+            - if(user.wallet.keepUpgrade.UPGRD_LVL_4 > 0)
+              a(href='/')  You have #{user.wallet.keepUpgrade.UPGRD_LVL_4} BTC upgrade on floor 4.
+              | You need #{(1.6 - (user.wallet.upgrade || 0)).toFixed(2)} BTC upgrade to upgrade Level 4.
+            - else
+              a(href='/') You have #{user.wallet.keepUpgrade.UPGRD_LVL_4} BTC upgrade on floor 4.
+          .panel-body
+          .col-md-2.col-xs-2
+            img(src='/assets/images/level_wallet/bitcoin-4.png', alt='', height="42" width="42")
+          .col-md-10.col-xs-10
+            .label.label-default.amount Upgrade Wallet Level 5
+            .label.label-default.link
+            - if(user.wallet.keepUpgrade.UPGRD_LVL_5 > 0)
+              a(href='/')  You have #{user.wallet.keepUpgrade.UPGRD_LVL_5} BTC upgrade on floor 5.
+              | You need #{(6.4 - (user.wallet.upgrade || 0)).toFixed(2)} BTC upgrade to upgrade Level 5.
+            - else
+              a(href='/') You have #{user.wallet.keepUpgrade.UPGRD_LVL_5} BTC upgrade on floor 5.
+
+
+block scripts
+  script(src='/global/vendor/datatables/jquery.dataTables.min.js')
+  script(src='/global/vendor/datatables-bootstrap/dataTables.bootstrap.js')
+  script(src='/global/js/Plugin/datatables.min.js')

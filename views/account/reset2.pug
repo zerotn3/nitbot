@@ -1,0 +1,28 @@
+extends ../auth
+
+block content
+  .page.vertical-align.text-xs-center(data-animsition-in='fade-in', data-animsition-out='fade-out')
+    .page-content.vertical-align-middle
+      .panel
+        .panel-body
+          form(method='post', role='form', autocomplete='off')
+            input(type='hidden', name='_csrf', value=_csrf)
+            .form-group.form-material.floating(data-plugin='formMaterial')
+              input.form-control(type='password', name='password2',id='password2', autofocus, required, minlength=8, maxlength=50)
+              label.floating-label New Password
+            .form-group.form-material.floating(data-plugin='formMaterial')
+              input.form-control(type='password', name='confirm',id='confirm', autofocus, required, minlength=8, maxlength=50)
+              label.floating-label Confirm Password
+            .form-group
+              button.btn.btn-primary.btn-block(type='submit') Change Password
+
+          footer.page-copyright
+            p WEBSITE BY BITRAIN.INFO
+            p © 2016. All RIGHT RESERVED.
+            .social
+              a(href='javascript:void(0)')
+                i.icon.bd-twitter(aria-hidden='true')
+              a(href='javascript:void(0)')
+                i.icon.bd-facebook(aria-hidden='true')
+              a(href='javascript:void(0)')
+                i.icon.bd-dribbble(aria-hidden='true')

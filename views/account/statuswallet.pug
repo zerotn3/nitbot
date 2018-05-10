@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  .panel
+    .panel-body
+      p This page is developing aloha
+      input(type='hidden', name='_csrf', value=_csrf)
+      input.form-control(type='text', name='btcPrice',id= 'btcPrice', value=market_price_usd)

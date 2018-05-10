@@ -1,0 +1,92 @@
+extends ../layout
+
+block content
+  .panel
+    .panel-heading
+      h1.panel-title.text-primary(style="text-align: center; font-size: 22px")
+        i.icon.md-account-circle
+        | ACCOUNT INFORMATION
+    .panel-body.container-fluid
+      form#acct_info(autocomplete='off', action='/account/profile', method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        if (user.sponsor)
+          .form-group.form-material(data-plugin='formMaterial')
+            label.form-control-label(for='inpSponsor') User ID
+            input#inpSponsor.form-control(type='text', name='sponsor', placeholder='Sponsor', value=(user.sponsor.full_nm + ' - (Sponsor: ' + user.sponsor.username + ')'), disabled)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='email') Email
+          input#email.form-control(type='email', name='email', placeholder='Email', value=user.email, required)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='full_nm') Full Name
+          input#full_nm.form-control(type='text', name='full_nm', placeholder='Full Name', value=user.full_nm, disabled)
+        //.form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='id_idf') Identify Card
+          input#id_idf.form-control(type='text', name='id_idf', placeholder='Identify Card', value=user.id_idf, disabled)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='phone_no') Phone Number
+          input#phone_no.form-control(type='text', name='phone_no', placeholder='Phone Number', value=user.phone_no, disabled)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='location') Country
+          input#location.form-control(type='text', name='location', placeholder='Country', value=user.location, disabled)
+
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='password2') Password 2nd
+          input#password21.form-control(type='password', name='password21', placeholder='Password 2', required)
+        .form-group.form-material(data-plugin='formMaterial')
+          button.btn.btn-primary(type='submit') Change Email
+
+  .panel
+    .panel-heading
+      h1.panel-title.text-primary(style="text-align: center; font-size: 22px")
+        i.icon.md-balance-wallet
+        | CHANGE BLOCKCHAIN ID
+    .panel-body.container-fluid
+      form#change_blockchain(autocomplete='off', action="/account/changeBlockChain", method='post')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='id_blc') Blockchain Wallet
+          input#id_blc.form-control(type='text', name='id_blc', placeholder='Blockchain wallet', value=user.id_blc, required)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='password2') Password 2nd
+          input#password2.form-control(type='password', name='password2', placeholder='Password 2', required)
+        .form-group.form-material(data-plugin='formMaterial')
+          button.btn.btn-primary(type='submit') Change Wallet
+        .form-group.form-material(data-plugin='formMaterial')
+          a(href='#FormModalChangePass2', role='', data-toggle='modal') ( Forget Password 2 )
+
+  .panel
+    .panel-heading
+      h1.panel-title.text-primary(style="text-align: center; font-size: 22px")
+        i.icon.md-lock
+        | CHANGE PASSWORD 1
+    .panel-body.container-fluid
+      form#change_password(autocomplete='off', action="/account/changePassWord", method='post')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='password') Old Password
+          input#password.form-control(type='password', name='password', placeholder='Password', minlength=4, maxlength=50, required)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='new_pass') New Password
+          input#new_pass.form-control(type='password', name='new_pass', placeholder='New Password', minlength=4, maxlength=50, required)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='cf_new_pass') Re-Enter Password
+          input#cf_new_pass.form-control(type='password', name='cf_new_pass', placeholder='Re-Enter Password', required)
+        .form-group.form-material(data-plugin='formMaterial')
+          label.form-control-label(for='password2') Password 2nd
+          input#password22.form-control(type='password', name='password22', placeholder='Password 2',required)
+        .form-group.form-material(data-plugin='formMaterial')
+          button.btn.btn-primary(type='submit', onclick="return confirm('Please make sure if you want to change Password 1?');") Change Password 1
+        .form-group.form-material(data-plugin='formMaterial')
+          a(href='#FormModalChangePass2', role='', data-toggle='modal') ( Forget Password 2 )
+
+
+
+    // Popup for upgrade wallet
+    #FormModalChangePass2.modal.fade(aria-hidden='false', aria-labelledby='exampleFormModalLabel', role='dialog', tabindex='-1')
+      .modal-dialog
+        form#showlistwallet.modal-content(autocomplete='off', action='/changePassword2', method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          .panel-body
+            h2 Forgot Your Password 2 ?
+            .form-group
+              button.btn.btn-primary.btn-block(type='submit') Please make sure if you want to change Password 2

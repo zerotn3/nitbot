@@ -1,0 +1,22 @@
+.site-menubar
+  .site-menubar-header
+    .cover.overlay
+      img.cover-image(src='/assets/images/dashboard-header.jpg', alt='...')
+      .overlay-panel.vertical-align.overlay-background
+        .vertical-align-middle
+          a.avatar.avatar-lg(href='javascript:void(0)')
+            img.profile(data-name=user.full_nm, alt=user.full_nm, style="border-radius:50%;width:60px;border: 1px solid white", src=user.avatar())
+          .site-menubar-info
+            h5.site-menubar-user #{user.username}
+            p.site-menubar-email #{user.email}
+  .site-menubar-body
+    div
+      div
+        ul.site-menu(data-plugin='menu')
+          - var i = 0;
+            each mnu in menus
+              - i += 1
+              li.site-menu-item
+                a.animsition-link(href=mnu.link)
+                  i.site-menu-icon(class=mnu.icon, aria-hidden='true')
+                  span.site-menu-title #{mnu.name}

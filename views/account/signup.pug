@@ -1,0 +1,59 @@
+extends ../auth
+
+block content
+  .page.vertical-align.text-xs-center(data-animsition-in='fade-in', data-animsition-out='fade-out')
+    | &gt;
+    .page-content.vertical-align-middle
+      .panel
+        .panel-body
+          .brand
+            img.brand-img(src='/assets//images/logo-blue.png', alt='...')
+            h2.brand-text.font-size-25 #{title}
+            - if(idsponsor == undefined)
+              h4.brand-text.font-size-25 Sponsor: Admin Bitrain
+            - else
+              h4.brand-text.font-size-25 Sponsor: #{idsponsor}
+          form.form-horizontal(id='signup-form', method='POST')
+            .col-md-6.col-xs-12
+              input(type='hidden', name='_csrf', value=_csrf)
+              input.form-control(type='hidden', name='id_sponsor',id='id_sponsor', maxlength=20)
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='text', name='username',id='username', maxlength= 50, minlength=6)
+                label.floating-label Username
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='text', name='full_nm',id='full_nm', maxlength= 50)
+                label.floating-label Full Name
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='phone', name='phone_no', id='phone_no', minlength=8, maxlength= 12)
+                label.floating-label Phone No
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='text', name='id_blc',id='id_blc', minlength=5,maxlength=70)
+                label.floating-label Blockchain Wallet
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='text', data-plugin='', name='location', id ='location' , style='width:433px;text-align: left;')
+              .form-group.form-material.floating(data-plugin='formMaterial', style='display:none')
+                input.form-control(type='text', name='location_code', id ='location_code' , maxlength=20, style='display:none')
+
+            .col-md-6.col-xs-12
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='email', name='email',id='email', autofocus, maxlength=50)
+                label.floating-label Email
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='password', name='password',id='password', maxlength=50)
+                label.floating-label Enter Password 1
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='password', name='confirmPassword',id='confirmPassword', maxlength=50)
+                label.floating-label Re-enter Password 1
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='password', name='password2',id='password2', maxlength=50)
+                label.floating-label Enter Password 2
+              .form-group.form-material.floating(data-plugin='formMaterial')
+                input.form-control(type='password', name='confirmPassword2',id='confirmPassword2', maxlength=50)
+                label.floating-label Re-enter Password 2
+
+            .form-group.col-md-12.col-xs-12.center-login
+              .g-recaptcha(data-sitekey=dataSiteKey)
+              button.btn.btn-primary.btn-block.btn-lg.m-t-10(type='submit') Sign up
+            p.col-md-12.col-xs-12
+              | Have account already? Please go to
+              a(href='/login') Sign In

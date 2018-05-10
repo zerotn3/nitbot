@@ -1,0 +1,56 @@
+extends ../layout
+
+block content
+  .panel
+    .panel-heading
+      .panel.nav-tabs-horizontal.nav-tabs-inverse(data-plugin='tabs')
+        .panel-heading.panel-heading-tab
+          ul.nav.nav-tabs.nav-tabs-solid(role='tablist')
+            li.nav-item
+              a.nav-link.active(data-toggle='tab', href='#panelTab1', aria-controls='panelTab1', role='tab', aria-expanded='true') tab1
+            li.nav-item
+              a.nav-link(data-toggle='tab', href='#panelTab2', aria-controls='panelTab2', role='tab') tab2
+            li.nav-item
+              a.nav-link(data-toggle='tab', href='#panelTab3', aria-controls='panelTab3', role='tab') tab3
+        .panel-body.p-t-20
+          .tab-content
+            #panelTab1.tab-pane.active(role='tabpanel')
+              table.table.table-bordered
+                thead
+                  tr
+                    td #No
+                    td Email
+                    td FullName
+                    td Status
+                    td Level
+                    td Phone
+                tbody
+                  - var i = 0;
+                  each usr in f1List
+                    - i += 1
+                    tr
+                      td= i
+                      td= usr.email
+                      td= usr.full_nm
+                      - if(usr.active == true)
+                        td= "Active"
+                      - else
+                        td= "Inactive"
+                      td= "Level " + (usr.profile.level || 0)
+                      td= usr.phone_no || '-'
+            #panelTab2.tab-pane(role='tabpanel')
+              h4 Protervi dissensio
+              |                   Protervi dissensio consuetudine equos publicam ingenia. Voluptatibus legendus initia
+              |                   confirmare sententiam. Desistunt possint habeatur dediti dubio,
+              |                   triarium is offendimur reprehenderit exercitus laudabilis motus
+              |                   celeritas, utrum dissentio renovata, habet partus natus. Iustius
+              |                   disserunt, quantum ennii admodum divinum mortem elaborare primum
+              |                   autem.
+            #panelTab3.tab-pane(role='tabpanel')
+              h4 Incurrunt latinam
+              |                   Incurrunt latinam, faciendi dedecora evertitur delicatissimi, afficit noctesque
+              |                   detracta illustriora epicurum contenta rogatiuncula dolores perspecta
+              |                   indocti, eveniunt confirmatur tractat consuevit durissimis iuvaret
+              |                   coercendi familiarem. Dolere prima fortunae intellegamus vix
+              |                   porro huic errorem molestum, graecos deinde effugiendorum aliter
+              |                   appetendum afferrent eosdem.

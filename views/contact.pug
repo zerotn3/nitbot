@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .row
+    .panel
+      .panel-body.container-fluid
+        form(method='POST', autocomplete="off")
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group.form-material(data-plugin='formMaterial')
+            label.form-control-label(for='name') Name
+            input.form-control(type='text', name='name', id='name', autofocus=true, placeholder="Name", value=user ? user.full_nm : '')
+          .form-group.form-material(data-plugin='formMaterial')
+            label.form-control-label(for='email') Email
+            input.form-control(type='text', name='email', id='email', placeholder="Email", value=user ? user.email : '')
+          .form-group.form-material(data-plugin='formMaterial')
+            label.form-control-label(for='message') Message
+            textarea.form-control(name='message', id='message', rows='7', placeholder="Your message")
+          .form-group
+            button.btn.btn-primary.waves-effect(type='submit')
+              i.fa.fa-envelope.mr-5
+              | Send

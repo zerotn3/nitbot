@@ -1,0 +1,45 @@
+extends ../auth
+
+block content
+  #mainView
+    .container-fluid.login-content
+      .center-login
+        .left-login
+          label.login-title(style='opacity: 0.5')
+            | Join Us!
+          p.join-us-desc The future of banking has arrived and you’re invited.
+          button.buttonTransparent(type='button', value='Next', onclick='window.location.href="/signup"')
+            .bnt-cover
+              span Join Bitrain now!
+        .right-login
+          img.icon-timo(src='/assets/images/new_login_v1.png', alt='')
+          form.form-required(id='signup-form', method='POST')
+            input(type='hidden', name='_csrf', value=_csrf)
+            .content-input
+              .form-group
+                .floatlabel-wrapper(style='position:relative')
+                  label.label-floatlabel(for='username', style='position: absolute; top: 0px; left: 8px; display: none; opacity: 1; font-size: 11px; color: rgb(41, 150, 204); transition: all 0.2s ease-in-out;') Username
+                  .floatlabel-wrapper(style='position:relative')
+                    input.form-control.input-default.input-kyc.active-floatlabel(type='text', name='username',id='username', required, style='padding-top: 16px; transition: all 0.2s ease-in-out;', placeholder="Username")
+              .form-group(style='margin-top:20px; position:relative')
+                .floatlabel-wrapper(style='position:relative')
+                  label.label-floatlabel(for='password', style='position: absolute; top: 0px; left: 8px; display: block; opacity: 1; font-size: 11px; color: rgb(41, 150, 204); transition: all 0.2s ease-in-out;') Password
+                  .floatlabel-wrapper(style='position:relative')
+                    input.form-control.input-default.input-kyc.input-password.active-floatlabel(type='password', name='password' id="password", required, style='padding-top: 16px; transition: all 0.2s ease-in-out;', placeholder='Password')
+              .form-group
+                .g-recaptcha(data-sitekey=dataSiteKey)
+              .form-group
+                button.btn.btn-default-green.btn-kyc.buttonPurple(type='submit', style='position:relative')
+                  div
+                    span(style='clear:both')
+                      | Login
+              .form-group
+                p
+                  | Still no account?
+                  a(href='/forgot')  Forgot password?
+              div(style='clear:both')
+              .form-group(style='text-align:center!important')
+                p.lbResult
+              div(style='clear:both')
+            div(style='clear:both; height: 20px')
+        div(style='clear:both')

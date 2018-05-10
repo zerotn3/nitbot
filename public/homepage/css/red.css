@@ -1,0 +1,126 @@
+/* --------------------- 
+  Skinks styles 
+  --------------------- */
+/* --- Backgrounds  --------------------- */
+::-moz-selection {
+  background-color: #3949ab;
+}
+::-webkit-selection {
+  background-color: #3949ab;
+}
+::-o-selection {
+  background-color: #3949ab;
+}
+::-khtml-selection {
+  background-color: #3949ab;
+}
+::-ms-selection {
+  background-color: #3949ab;
+}
+::selection {
+  background-color: #3949ab;
+}
+.generalLink:hover,
+.socialNav > li a:hover,
+.accordianShortCode .triggerRow > a.activeLine:before,
+.accordianShortCode .triggerRow > span.activeLine:before,
+.owl-dot:hover span,
+.owl-dot.active span,
+.mainNav .navTabs > li .dropDown li:hover > a,
+.mainNav .navTabs > li .dropDown li:hover > button,
+.mainNav .navTabs > li:hover > a,
+.mainNav .navTabs > li:hover > button,
+.teamMemberWrapper:hover .memberAvatar,
+.teamMemberWrapper .memberSocial a,
+.post .postContents .postIcon,
+.postSlider .owl-controls .owl-nav div:hover,
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li:last-child a:hover,
+.pagination > li:first-child a:hover,
+.bottomFooter .footerSocial .socialNav li a:hover,
+.formArea .generalBtn,
+.formArea input[type="submit"],
+.switcher .switcherShowHide,
+.back-to-top,
+#responsiveMainNavToggler.opened,
+.responsiveMainNav > ul.navTabs > li a:hover,
+.responsiveMainNav > ul.navTabs > li > button:hover,
+.responsiveMainNav > ul.navTabs > li .toggleResponsive.activeLine,
+.mainNav .navTabs > li .active,
+.mainNav .navTabs > li .dropDown li .active,
+.responsiveMainNav > ul.navTabs > li .active, .stepWizardStep .btn-primary {
+  background-color: #3949ab;
+}
+
+/* --- colors  --------------------- */
+.sectionTitle span.textlightBlue,
+.sectionTitle span.generalBorder,
+.textlightBlueUpper,
+.textlightBlue,
+.header-info span i,
+.generalinfo i:before,
+.generalinfotw i:before,
+.flaticonBlue:before,
+.loginbtn a.generalBtn i, .submitBtn, .price,
+.testmonialsTopContents blockquote p:before,
+#footer .footerWidget .info-box .author .fa,
+.sectionTitletw .textlightBlue,
+.post .postContents .postTitle a .textlightBlue,
+.add-send .sendMessageForm input:focus,
+.add-send .sendMessageForm textarea:focus,
+.topFooter .footerWidget .footerWidgetHeader,
+.topFooter .footerWidget .footerLinksList li a:hover,
+.topFooter .footerWidget .getInTouchList li span a,
+.bottomFooter .copyrights p a:hover,
+.companyhistory .company_established h5.textAss:before,
+.newsletter form input,
+.mainNav .navTabs .login .formWrapper .register a:hover,
+.formArea .generalLink:hover, .sideNavList li.active a, .sideNavList li a:hover,
+.commentLevel .reply, .lightBluetxt, .faqQuestion, .portfolioFilters li.last span, .portfolioFilters li.active span,
+.postTags li:first-child:before, .productTotal .amount,
+.checkOutTotals td .amount, .masterCardpayPal a, #searchNav button {
+  color: #3949ab;
+}
+
+/* border top */
+.mainNav .navTabs > li .dropDown {border-top-color: #3949ab;}
+/*Button Background*/
+.main-slider .tp-bullets.preview3 .bullet:hover, .main-slider .tp-bullets.preview3 .bullet.selected{border-color: #3949ab!important;background: #3949ab!important;}
+.btn-lightBlue, 
+.sectionTitle .sectionHeader .generalBorder, 
+.singleteamMember:hover .memberDetails,
+button, input[type="button"], 
+.generalBtn, .fNewsletters, .generalLink, 
+.footerWidgetHeader h2:after,
+.bottomFooter, .blueBg, .companyhistory .company_established h5.textAss:after, .pageTitle .generalBorder,
+.lightBlueBg, .generalBorder, .widgetHeader .generalBorder, .pagination > li:first-child a,
+.shipingContent button:hover{
+  background: #3949ab;
+}
+/*Scroll Background*/
+.blueDotsborder .owl-dots .owl-dot.active span, .blueDotsborder .owl-dots .owl-dot:hover span{background: none repeat scroll 0 0 #3949ab;}
+.InfoTabFrature .featureNav>li.active>a, .InfoTabFrature .featureNav>li.active>a:focus, .InfoTabFrature .featureNav>li.active>a:hover{background: #3949ab;}
+.blueDots .owl-dots .owl-dot.active span, .owl-dots .owl-dot:hover span{background: none repeat scroll 0 0 #3949ab;}
+.productInfo .shopButton:hover{background:#3949ab; }
+/*Border*/
+/*border color*/
+.blueDotsborder .owl-dots .owl-dot span{border: 1px solid #3949ab;}
+.headerBgtw{border: 62px solid #3949ab;border-right: 27px solid transparent;border-bottom: 0px solid transparent;}
+.secBar{border-bottom:13px solid #3949ab;}
+.productInfo .shopButton{border: 2px solid #3949ab;}
+.sideNavList li:hover{border-bottom: 1px solid #3949ab;}
+.featureNavtw>li.active>a, .featureNavtw>li.active>a:focus, .featureNavtw>li.active>a:hover, .featureNavtw>li>a:focus, .featureNavtw>li>a:hover{border-bottom: 2px solid #3949ab;}
+.fromCheckBox .checkbox-helper, .fromCheckBox [type=checkbox]+.checkbox-helper{border: 2px solid #3949ab;color: #3949ab;}
+.blueBorderBtn{background: transparent;color:#3949ab;border: 1px solid #3949ab;}
+.shipingContent button{border-color: #3949ab;}
+/*RGB Color*/
+.servicImg img{
+  -webkit-box-shadow: 23px -22px 0px 0px rgb(57, 73, 171);
+  -moz-box-shadow: 23px -22px 0px 0px rgb(57, 73, 171);
+  box-shadow: 23px -22px 0px 0px rgb(57, 73, 171);
+}
+.search_popup, .default-gallery-item .inner-box .overlay_content, .PlanningImg a, #footer .instagram-widget .image-thumb .lightbox-image
+{background: rgba(57, 73, 171, 0.8);}
+.mainContactForm .input_label_hola:after{border-bottom: 4px solid #3949ab;}
+

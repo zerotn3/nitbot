@@ -1,0 +1,34 @@
+extends ../auth
+
+block content
+  .page.vertical-align.text-xs-center(data-animsition-in='fade-in', data-animsition-out='fade-out')
+    .page-content.vertical-align-middle
+      .panel
+        .panel-body
+          h2 Forgot Your Password ?
+          p Input your registered email and user name to reset your password
+          form(method='post', role='form', autocomplete='off')
+            input(type='hidden', name='_csrf', value=_csrf)
+            .form-group.form-material.floating(data-plugin='formMaterial')
+              input.form-control(type='email', name='email',id='email', autofocus, maxlength=50, required)
+              label.floating-label Email
+            .form-group.form-material.floating(data-plugin='formMaterial')
+              input.form-control(type='text', name='username',id='username', autofocus, maxlength=50, required)
+              label.floating-label User Name
+            .form-group
+              button.btn.btn-primary.btn-block(type='submit') Reset Your Password
+            p
+              | Still no account? Please go to
+              a(href='/signup')  Register
+
+          footer.page-copyright
+            p WEBSITE BY BITRAIN.INFO
+            p © 2016. All RIGHT RESERVED.
+            .social
+              a(href='javascript:void(0)')
+                i.icon.bd-twitter(aria-hidden='true')
+              a(href='javascript:void(0)')
+                i.icon.bd-facebook(aria-hidden='true')
+              a(href='javascript:void(0)')
+                i.icon.bd-dribbble(aria-hidden='true')
+

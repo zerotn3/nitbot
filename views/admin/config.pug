@@ -1,0 +1,70 @@
+extends ../layout
+
+block page_css
+  link(rel='stylesheet', href='/global/vendor/bootstrap-datepicker/bootstrap-datepicker.min.css')
+  link(rel='stylesheet', href='/global/vendor/jt-timepicker/jquery-timepicker.css')
+  style.
+    .form-group label {
+      padding-left: 0 !important;
+      padding-bottom: 0px;
+      font-weight: bold;
+    }
+
+block content
+  .row
+    .col-md-12.col-xs-12
+      .panel.panel-danger.panel-line
+        .panel-heading
+          h3.panel-title(style='padding: 20px 30px') Config BTC Upgrade (Only Admin)
+        .panel-body
+          .col-md-6.col-xl-6.col-xs-12
+            form.form-horizontal(id='config-form',action="/admin/config", method='post')
+              input(type='hidden', name='_csrf', value=_csrf)
+              .form-group
+                label.form-control-label BTC Update Level 1
+                input.form-control.focus(type='text', name = "UPGRD_LVL_1", id= "UPGRD_LVL_1", value=configs[UL.LVL_1])
+              .form-group
+                label.form-control-label BTC Update Level 2
+                input.form-control.focus(type='text', name = "UPGRD_LVL_2", id= "UPGRD_LVL_2", value=configs[UL.LVL_2])
+              .form-group
+                label.form-control-label BTC Update Level 3
+                input.form-control.focus(type='text', name = "UPGRD_LVL_3", id= "UPGRD_LVL_3", value=configs[UL.LVL_3])
+              .form-group
+                label.form-control-label BTC Update Level 4
+                input.form-control.focus(type='text', name = "UPGRD_LVL_4", id= "UPGRD_LVL_4", value=configs[UL.LVL_4])
+              .form-group
+                label.form-control-label BTC Update Level 5
+                input.form-control.focus(type='text', name = "UPGRD_LVL_5", id= "UPGRD_LVL_5", value=configs[UL.LVL_5])
+              .form-group(style='margin-bottom: 0px')
+                label.form-control-label End date
+              .input-daterange-wrap
+                .input-daterange
+                  .input-group
+                    span.input-group-addon
+                      i.icon.md-calendar(aria-hidden='true')
+                    input.form-control.datepair-date.datepair-start(type='text', name = "COUNT_ENDING", id= "COUNT_ENDING", value=configs[COUNT_ENDING], data-plugin='datepicker', placeholder=DATE_FORMAT_ONLY)
+                  .input-group
+                    span.input-group-addon
+                      i.icon.md-time(aria-hidden='true')
+                    input#endTime.form-control.datepair-time.datepair-start(type='text', name='endTime', value=time, data-plugin='timepicker')
+              .clear
+              .form-group(style="padding-top: 10px")
+                button.btn.btn-primary(type='submit') Submit
+
+block scripts
+  script(src='/global/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js')
+  script(src='/global/vendor/jt-timepicker/jquery.timepicker.min.js')
+  script(src='/global/js/Plugin/bootstrap-datepicker.js')
+  script(src='/global/js/Plugin/jt-timepicker.js')
+  script.
+    var format = '#{DATE_FORMAT_ONLY}'.toLowerCase();
+    $("input[data-plugin='datepicker']").datepicker({
+      format: format,
+      startDate: '0d',
+      todayHighlight: true
+    });
+    setTimeout(function () {
+      $('#endTime').timepicker({
+        'timeFormat': 'H:i:s'
+      });
+    }, 100);

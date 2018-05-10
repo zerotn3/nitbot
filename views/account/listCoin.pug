@@ -1,0 +1,108 @@
+extends ../layout
+block page_css
+  link(rel='stylesheet', href='/global/vendor/datatables-bootstrap/dataTables.bootstrap.css')
+  link(rel='stylesheet', href='/assets/css/datatables.css')
+  link(rel='stylesheet', href='/css/table.css')
+
+block content
+  .panel
+    header.panel-heading
+      .panel-actions
+      h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+        i.icon.md-book(aria-hidden='true')
+        | List Top Coin After Check
+    .panel-body
+      table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+        thead
+          tr
+            th #No
+            th Market Name
+            th Đang Chạy
+            th Giá Vào
+            th % Chốt
+            th Time Enter
+        tbody
+          - var i = 0;
+            each usr in listCoin
+              - i += 1
+              tr
+                td= i
+                td
+                  a(href='https://bittrex.com/Market/Index?MarketName=' + usr.marketNn, target="_blank")= usr.marketNn
+                td= usr.activeFlag == 'Y' ? 'YES' : 'NO'
+                td= usr.buy_pri
+                td= usr.percentSell == null ? '' : usr.percentSell + '%'
+                td= moment(usr.lastTime).format(DATE_FORMAT)
+  .panel
+    header.panel-heading
+      .panel-actions
+      h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+        i.icon.md-book(aria-hidden='true')
+        | List Lệnh Đã Book & Sell
+    .panel-body
+      table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+        thead
+          tr
+            th #No
+            th Market Name
+            th Giá mua
+            th Thời gian Vào
+            th Loại
+        tbody
+          - var i = 0;
+            each coin in listBuySell
+              - i += 1
+              tr
+                td= i
+                td
+                  a(href='https://bittrex.com/Market/Index?MarketName=' + coin.marketNn, target="_blank")= coin.marketNn
+                td= coin.enterPrice
+                td= coin.enterTime
+                td= coin.type
+
+  .panel
+    .col-xl-6.col-md-6.col-xs-12
+      .panel
+        header.panel-heading
+          .panel-actions
+          h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+            i.icon.md-book(aria-hidden='true')
+            | Config & Start
+        .panel-body
+          form#configBittrex.form.form-vertical(action="/admin/configBittrex", method='post')
+            input(type='hidden', name='_csrf', value=_csrf)
+            .form-group.control-group
+              label.form-control-label Select Wallet
+              .controls
+                select#marketNm.form-control(name="marketNm",required)
+                  - var i = 0;
+                    each coin in listCoin
+                      option(value=coin.marketNn) #{coin.marketNn}
+            .form-group.control-group
+              label.form-control-label Đặt Giá Mua:
+              .controls
+                input.form-control(type='text', name='buy_pri', id='buy_pri', placeholder='E.g 0.01, 0.1, 1', required)
+            .form-group.control-group
+              label.form-control-label Đặt % chốt lệnh:
+              .controls
+                input.form-control(type='text', name='percentSell', id='percentSell', placeholder='E.g 3, 4, 5', required )
+            .form-group.control-group
+              .span
+                input(type='checkbox', value='Y', name='activeFlag', id='activeFlag', required)
+                |  Check để bắt đầu chạy.
+            .form-group.control-group
+              .controls
+                button.btn.btn-primary(type='submit')
+                  | Submit
+
+  script.
+    jQuery(document).ready(function () {
+      setTimeout(function () {
+        $('table').parent().attr('style', 'overflow: scroll');
+      }, 100)
+    });
+
+block scripts
+  script(src='/global/vendor/datatables/jquery.dataTables.min.js')
+  script(src='/global/vendor/datatables-bootstrap/dataTables.bootstrap.js')
+  script(src='/global/js/Plugin/datatables.min.js')

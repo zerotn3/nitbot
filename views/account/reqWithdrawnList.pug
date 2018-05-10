@@ -1,0 +1,146 @@
+extends ../layout
+block page_css
+  link(rel='stylesheet', href='/global/vendor/datatables-bootstrap/dataTables.bootstrap.css')
+  link(rel='stylesheet', href='/assets/css/datatables.css')
+  link(rel='stylesheet', href='/css/table.css')
+
+block content
+  .panel
+    header.panel-heading
+      .panel-actions
+      h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+        i.icon.md-book(aria-hidden='true')
+        | Bitrain List All User
+    .panel-body
+      table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+        thead
+          tr
+            th #No
+            th Username
+            th Email
+            th FullName
+            th Status
+            th Level
+            th Phone
+            th Id Block Chain
+            th HashCode
+        tfoot
+          tr
+            th #No
+            th Username
+            th Email
+            th FullName
+            th Status
+            th Level
+            th Phone
+            th Id Block Chain
+            th HashCode
+        tbody
+          - var i = 0;
+            each usr in users
+              - i += 1
+              tr
+                td= i
+                td= usr.username
+                td= usr.email
+                td= usr.full_nm
+                if(usr.active == true)
+                  td= "Active"
+                else
+                  td= "Inactive"
+                td= "Lv " + (usr.profile.level || 0)
+                td= usr.phone_no || '-'
+                td= usr.id_blc
+                td
+                  a(href='https://blockchain.info/tx/' + usr.hash_cd, target="_blank")= usr.hash_cd
+
+  .panel
+    header.panel-heading
+      .panel-actions
+      h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+        i.icon.md-book(aria-hidden='true')
+        | Bitrain Withdrawn Request
+    .panel-body
+      table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+        thead.well
+          tr
+            th.text-lg-center No.
+            th.text-lg-center Username
+            th.text-lg-center Full Name
+            th.text-lg-center Email
+            th.text-lg-center Wallet ID
+            th.text-lg-center Wallet Name
+            th.text-lg-center Date
+            th.text-lg-center Amount
+            th.text-lg-center Status
+            th.text-lg-center Link Payout
+            th.text-lg-center Sent
+            th.text-lg-center Check HashCode
+
+        //tbody.well
+          - var j = 0;
+            each req in reqBTCsN
+              tr(data-toggle="tooltip" title=moment(req.createdAt).format(DATE_FORMAT))
+                td= ++j
+                //td= req.user.username
+                td= req.user.full_nm
+                td= req.user.email
+                td= req.user.id_blc
+                td= req.walletname
+                td= moment(req.createdAt).format(DATE_FORMAT_ONLY)
+                td= req.btc_req
+                td= req.status_req
+                td
+                  a(href='https://blockchain.info/qr?data=bitcoin:' + req.walletid + '?amount=' + req.btc_req + '%26label=example%2520label')
+                    | Focus Here
+                td
+                  a.btn.btn-md.btn-icon.btn-pure.btn-primary.on-default.remove-row.waves-effect(href='/account/withdrawn/checkDone?code=' + req._id.toString(), data-toggle='tooltip', data-original-title='Sent', onclick="return confirm('Are you sure you want to SAVE this item?');")
+                    i.icon.md-check(aria-hidden='true')
+                td
+                  a.btn.btn-md.btn-icon.btn-pure.btn-primary.on-default.remove-row.waves-effect(href='https://blockchain.info/tx/' + req.user.hash_cd, target="_blank", data-toggle='tooltip', data-original-title='Check')
+                    i.icon.md-money-box(aria-hidden='true')
+
+  .panel
+    header.panel-heading
+      .panel-actions
+      h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+        i.icon.md-book(aria-hidden='true')
+        | Bitrain Withdrawn Request
+    .panel-body
+      table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+        thead.well
+          tr
+            th.text-lg-center No.
+            th.text-lg-center Username
+            th.text-lg-center Full Name
+            th.text-lg-center Email
+            th.text-lg-center Wallet ID
+            th.text-lg-center Wallet
+            th.text-lg-center Date
+            th.text-lg-center Amount
+            th.text-lg-center Status
+        tbody.well
+          - var j = 0;
+            each req in reqBTCsY
+              tr(data-toggle="tooltip" title=moment(req.createdAt).format(DATE_FORMAT))
+                td= ++j
+                td= req.user.username
+                td= req.user.full_nm
+                td= req.user.email
+                td= req.user.id_blc
+                td= req.walletname
+                td= moment(req.createdAt).format(DATE_FORMAT_ONLY)
+                td= req.btc_req
+                td= req.status_req
+
+  script.
+    jQuery(document).ready(function () {
+      setTimeout(function () {
+        $('table').parent().attr('style', 'overflow: scroll');
+      }, 100)
+    });
+
+block scripts
+  script(src='/global/vendor/datatables/jquery.dataTables.min.js')
+  script(src='/global/vendor/datatables-bootstrap/dataTables.bootstrap.js')
+  script(src='/global/js/Plugin/datatables.min.js')

@@ -1,0 +1,233 @@
+.body {
+  color: #080808;
+  font-size: 13px;
+  font-family: "맑은고딕", "Malgun Gothic", Verdana, Arial, Geneva, Helvetica, sans-serif, 'Apple-Gothic', '애플고딕', Droid Sans, '돋움', Dotum, sans-serif;
+}
+.mr-5 {
+  margin-right: 5px;
+}
+
+#widgetLineareaOne .ct-chart .ct-area {
+  fill-opacity: 1;
+}
+
+#widgetLineareaOne .ct-chart .ct-series.ct-series-a .ct-area {
+  fill: #7986cb;
+}
+
+#widgetLineareaTwo .ct-chart .ct-area {
+  fill-opacity: 1;
+}
+
+#widgetLineareaTwo .ct-chart .ct-series.ct-series-a .ct-area {
+  fill: #ffd54f;
+}
+
+#widgetLineareaThree .ct-chart .ct-area {
+  fill-opacity: 1;
+}
+
+#widgetLineareaThree .ct-chart .ct-series.ct-series-a .ct-area {
+  fill: #4dd0e1;
+}
+
+#widgetLineareaFour .ct-chart .ct-area {
+  fill-opacity: 1;
+}
+
+#widgetLineareaFour .ct-chart .ct-series.ct-series-a .ct-area {
+  fill: #81c784;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.pad-2 {
+  padding: 2px !important;
+}
+
+#countdown span {
+  padding: 0 5px;
+}
+
+.bg-home, .payment-request .bg-payment-request, .wealth .bg-wealth {
+  background-image: url(../assets/images/bg_bitrain_1.jpg);
+}
+
+.banner-wrapper {
+  width: 100%;
+  height: 160px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 50px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-style {
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+  transition-property: all;
+  transition-duration: .4s;
+  transition-timing-function: cubic-bezier(0, 0, 0, 1);
+}
+
+.banner-wrapper .icon .img {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background: rgba(57, 73, 171, .4);
+}
+
+.banner-wrapper .content-banner div {
+  vertical-align: middle;
+}
+
+.banner-wrapper .content-banner {
+  margin: 0 auto;
+  float: none;
+  display: table;
+}
+
+.banner-wrapper .content-banner div {
+  vertical-align: middle;
+}
+
+.banner-wrapper .icon {
+  position: relative;
+  display: inline-block;
+  margin: 0 25px 0 0;
+}
+
+.banner-wrapper .title {
+  display: inline-block;
+  margin: 0;
+  font-size: 20px;
+  color: #fff;
+}
+
+.banner-wrapper .title span {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+.banner-wrapper .title span.username:hover {
+  cursor: pointer;
+}
+
+.banner-wrapper .title span.username {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}
+
+.site-navbar {
+  background-color: rgba(0, 0, 0, .1);
+  transition: all 300ms ease-in-out;
+}
+
+.site-navbar.fixed {
+  background: linear-gradient(93deg, #003a9d, #3d79d4);
+}
+
+.content-wrapper {
+  margin-top: 100px;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  left: 0;
+  right: 0;
+  z-index: 2;
+  overflow: visible;
+  float: left;
+  padding-top: 40px;
+}
+
+.content-warpper .home-content .home-line .left-home {
+  display: table;
+  height: 44px;
+}
+
+.content-warpper .home-content .click-link {
+  padding-top: 20px;
+  cursor: pointer;
+}
+
+.panel.wallet {
+  border-radius: 0 !important;
+  margin-bottom: .875rem !important;
+}
+
+.panel.wallet > .panel-heading > .panel-title {
+  padding: 5px 20px !important;
+}
+
+.panel.wallet > .panel-body {
+  padding: 10px 10px !important;
+}
+
+.panel.wallet > .panel-body .icon {
+  font-size: 40px;
+}
+
+.panel.wallet a {
+  color: #81818d !important;
+}
+
+.panel.wallet .amount {
+  font-size: 16px;
+}
+
+.panel.wallet .link {
+  font-size: 12px;
+}
+
+.panel.wallet .panel-body {
+  color: #003a9d;
+}
+.form-group {
+  margin-bottom: 10px;
+  /*+ .form-group {
+    margin-top: 10px;
+  }*/ }
+.form-group .control-label {
+  font-weight: bold;
+  padding: 5px 0 0 0;
+  margin-bottom: 0; }
+.form-group .form-control {
+  display: inline-block;
+  border-color: #5e679a; }
+.form-group .col-sm-12, .form-group .col-xs-12 {
+  padding: 0; }
+.form-group input, .form-group select, .form-group textarea {
+  font-family: sans-serif;
+  font-size: inherit;
+  line-height: inherit;
+  color: #080808; }
+.centered {
+  text-align: center;
+  font-size: 0;
+}
+.centered > div {
+  float: none;
+  display: inline-block;
+  text-align: left;
+  font-size: 13px;
+}
+
+table.dataTable thead .sorting:after {
+  opacity: 1 !important;
+}
+
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after {
+  opacity: 1 !important;
+}

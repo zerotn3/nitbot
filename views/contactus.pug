@@ -1,0 +1,85 @@
+extends homepage
+
+block content
+  .pageInfo.lightSection
+    .pageInfoBg.colorBorder.clearfix
+      .cover
+      .container
+        .row
+          .col-sm-12.text-center
+            .pageTitle
+              h1
+                | Contact
+                span.textlightBlue  us
+                span.generalBorder
+            // end of pageTitle
+          // end of col12
+        // end of row
+      // end of container
+    // end of pageInfoBg
+    .container
+      .row
+        .col-sm-12
+          ul.breadcrumb
+            li
+              a(href='#') Home
+            li.active Contact
+          // end of breadcrumb
+        // end of col12
+      // end of row
+    // end of container
+  // end of page info
+  section#contactArea.contactForm.clearfix.lightSection
+    .sectionWrapper
+      .container
+        .row
+          .col-sm-12
+            .sectionTitle.sectionTitleth.text-center
+              h2.sectionHeader
+                | Contact
+                span.textlightBlue  Us
+                span.generalBorder
+              p
+                | Feel free to contact us at any given time and with any question, using the form below.
+                br
+                |  Our support team will try to reply as soon as possible, providing an exceptional service.
+            // end of sectionTitle
+          // end of col12
+        // end of row
+        .row.Contact
+          .col-sm-12.conForm
+            #message
+            form#cform.sendMessage.formArea.clearfix(method='post', action='mail.php', name='cform')
+              ul.row.contactFormArea
+                li.col-xs-12.col-sm-4.NoPaddingRight
+                  input#name(value='Your Name', onblur="if(this.value=='')this.value='Your Name'", onfocus="if(this.value=='Your Name')this.value=''", name='name', type='text', required='')
+                li.col-xs-12.col-sm-4.NoPaddingRight
+                  input#email(value='Mail Address', onblur="if(this.value=='')this.value='Mail Address'", onfocus="if(this.value=='Mail Address')this.value=''", name='email', type='email', required='')
+                li.col-xs-12.col-sm-4
+                  input#number(value='Phone Number', onblur="if(this.value=='')this.value='Phone Number'", onfocus="if(this.value=='Phone Number')this.value=''", name='mobile', type='text', required='')
+                li.col-xs-12.col-sm-12
+                  textarea#comments(name='message', placeholder='Your Message...')
+                .clearfix
+                li.col-sm-12.checkbox.fromCheckBox.text-center.clearfix
+                  label
+                    input.check_vlaid.check_touched(type='checkbox', value='checkbox', name='checkbox', style='', required='')
+                    span.checkbox-helper
+                    span.showTxt Send copy to yourself
+                  // end of label
+                li.col-sm-12
+                  input#submit.submitBnt(type='submit', name='send', value='Send mail')
+              // end of ul
+              #simple-msg
+            // end of conform
+          // end of col8
+          //.col-sm-4
+            #GoogleMap.gMap.clearfix
+              #map_canvas
+            // end of gMap
+          // end of col4
+        // end of row
+      // end of container
+    // end of sectionWrapper
+  // end of contactArea
+
+

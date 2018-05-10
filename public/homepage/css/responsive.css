@@ -1,0 +1,601 @@
+/*
+* Theme Responsive Styles
+* Feel free to customize any of the Break Points below.
+* 
+* If you don't know how to determine Design's Breakpoints; Read this Article: https://goo.gl/5f93vE
+* To learn more about implementing Highly Effective Media Queries; Read this Article: https://goo.gl/NpWuDh
+* And Remember to use EMs instead of Pixels; Read this Article to know why: https://goo.gl/XBJdnw
+*/
+/* Media Queries
+================================================== */
+#responsiveMainNavToggler,
+.responsiveMainNav {display: none;}
+.responsiveMainNav.opened {display: block;}
+[class~="col-"] {
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -khtml-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 1400px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 1400px){
+.news-letter .news-letterfrm{padding-bottom: 25px;padding-right: 60px;}
+.news-letter .businessman img{width: 40%;}
+.main-slider .tparrows.preview3.tp-leftarrow{left:5px !important;}
+.main-slider .tparrows.preview3.tp-rightarrow{right:5px !important;}
+.NewslettersBlueBg{display: none;}
+.fNewsletters{
+  min-height: 96px;
+  margin: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: #3949ab;
+}
+.FinancNewsletterBg{
+  padding: 44px 0;
+  width:1170px;
+  position: absolute;
+  top: 30px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 5px 35px 0px rgba(0,0,0,0.24);
+-moz-box-shadow: 0px 5px 35px 0px rgba(0,0,0,0.24);
+box-shadow: 0px 5px 35px 0px rgba(0,0,0,0.24);
+}
+/*Home 1 page end */
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 1250px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 1250px){
+.main-slider .tparrows.preview3.tp-leftarrow {left: initial !important;right: 5px !important;top: 62% !important;}
+/*Home 1 page end */
+.cd-slider-nav a{font-size: 14px;}
+.heroflaticon:before {font-size: 40px;}
+/*Home 2 page End*/
+.blogPost .owl-controls .owl-next{right: -10px;}
+.blogPost .owl-controls .owl-prev{left: -10px;}
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 1199px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 1199px){
+.headinfo{width: 200px;}
+.weeklyOpen {width: 245px;}
+.locationinfo {width: 185px;}
+.generalinfo i:before {font-size: 30px;}
+.generalinfo strong{font-size: 14px;}
+.generalinfo a{font-size: 14px;}
+.generalinfo p{font-size: 14px;}
+.headTopcompanyInfo .col-sm-8{padding-left: 0;}
+.mainNav .navTabs > li > a, .mainNav .navTabs > li > button{padding: 0 18px;font-size: 15px;}
+#header .col-sm-8{padding-right: 0;}
+.singleFinance:hover{padding-left: 15px;}
+.financeContent h3{font-size: 17px;}
+.financeContent p{font-size: 15px;line-height: 25px;}
+.description p{font-size: 15px;line-height: 25px;}
+ul.gurulist li{font-size: 15px;line-height: 30px;}
+.FinanceGuruDetails .btn-lightBlue{margin-top: 28px;}
+.contentTitle h3 {font-size: 15px;}
+.PlanningImg a{max-height: 132px;}
+.postTitle{font-size: 18px;}
+.postContents{padding-left: 5px;width: 58%;}
+.post .postMeta li{font-size: 11px;}
+.singleTestmonial{padding-left: 40px;}
+.executiveContact .executive_img{left: -210px;}
+.infoContent p{font-size: 13px;}
+.footerText p{font-size: 14px;padding-right: 20px;}
+.FinancNewsletterBg{width: 940px;}
+span.count-text{font-size: 50px;}
+.counter h3{font-size: 16px;}
+/*Home 1 page end */
+.searchHead{width: 100%;}
+#headtoptw .logo{padding-top: 50px;}
+.InfoTabFrature .featureNav > li > a{font-size: 15px;padding: 3px 22px 6px;}
+.featureListRht{width: 60%;}
+.featureListRht p{font-size: 14px;}
+.featureList li{font-size: 14px;}
+.accordianShortCode .triggerRow{margin-bottom: 6px;}
+.accordianShortCode .triggerMenu{padding: 4px 10px 0px 10px;}
+.avaterImgtw img{height: 480px;}
+/*Home 2 Page End */
+.body-boxed .allWrapper, .body-boxed-2 .allWrapper{width: 970px;}
+/*Home Boxed End*/
+.companyhistory .HistoryPersonimg{padding-right: 30px;}
+.companyhistory .company_established{top: inherit;}
+.companyhistory .company_established.bordertp:after{display: none;}
+.companyhistory .companyInfo{margin-bottom: 50px;}
+#comHistory .container{position: relative;}
+.grayBordercIfo:before{
+  content: '';
+  display: block;
+  width: 1px;
+  height:100%;
+  background: #e8e6e6;
+  border-left: 1px solid #e8e6e6;
+  position: absolute;
+  left:5px;
+  top: 0px;
+}
+/*About Page End*/
+.sideNavList li a{font-size: 15px;}
+.needQuery{padding: 46px 22px 33px;}
+.widgetTestimonial .singlewidgetTestimonial {padding: 35px 15px;}
+.testContents blockquote p{font-size: 13px;}
+.blogPostShare li{margin-right: 0px;}
+.PostShare .blogPostShare li a{margin-right: 0px;}
+.PostShare .ShareTitle{margin-right: 0px;}
+.blogColmnth .postTitle h2, .blogColmnfr .postTitle h2{font-size: 18px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.blogColmnth .postMeta li, .blogColmnfr .postMeta li{font-size: 10px;margin-right: 0px!important;}
+.blogColmnth .PostShare .generalBtn, .blogColmnfr .PostShare .generalBtn{font-size: 14px;float: none !important;margin-top: 20px;}
+/*Blog Colmun Pages End*/
+.postAuthorContent{width: 56%;}
+.commentLevel .commentContents {width: 83%;}
+.commentLevel2 .commentContents {width: 78%;}
+/*Blog Pages End*/
+.faqtab > li > a{font-size: 12px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.faqContent p{font-size: 13px;}
+.project .projectMeta{z-index: 9999;}
+.price{width: 90%;}
+.cartProcessBtn{width: 100%;font-size: 100%;}
+/*Shop Pages End*/
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 991px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 991px){
+span.phone {padding-right: 10px;}
+span.location {padding-right: 15px;}
+.header-info span{font-size: 11.5px;}
+.socialNav > li a:last-child{margin-right: 0px;}
+.generalinfo strong {font-size: 11px;}
+.generalinfo a {font-size: 11px;}
+.generalinfo p{font-size: 11px;line-height: 18px;}
+.generalinfo i:before{font-size: 25px;}
+.logo{width: 90%;}
+.locationinfo {width: 140px;}
+.headinfo {width: 145px;}
+.weeklyOpen {width: 195px;}
+.generalinfo i {padding-right: 0px;}
+.headinfo:after {height: 30px;right: 15px;}
+.navSearch .col-sm-3{padding-left: 0px;}
+.mainNav .navTabs > li > a, .mainNav .navTabs > li > button {padding: 0 12.5px;font-size: 12px;}
+.main-slider .tparrows.preview3.tp-rightarrow {top: 45% !important;}
+.main-slider .tparrows.preview3.tp-leftarrow{top: 60% !important;}
+.sectionTitle .sectionHeader{font-size: 25px;}
+.gurupara {padding-top: 10px;}
+.description p {font-size: 12px;line-height: 20px;}
+ul.gurulist li {font-size: 12px;line-height: 23px;}
+.FinanceGuruDetails .btn-lightBlue {margin-top: 5px;}
+span.count-text {font-size: 45px;}
+.count-outer strong{font-size: 30px;}
+.counter h3 {font-size: 12px;}
+.contentTitle h3 {font-size: 12px;}
+.PlanningImg a {max-height: 98px;}
+.memberName{font-size: 15px;}
+.memberJob{font-size: 13px;}
+.FinancNewsletterBg{width: 720px;}
+.FinancNewsletterBg .sectionTitle h2{font-size: 20px;margin-left: 0;}
+#executiveService .col-sm-7.col-md-offset-5{margin-left: 50%;}
+.executiveContact .col-sm-4 {margin-left: 15%;width: 42%;}
+/*Home 1 page end */
+.searchHead{width: 55%;}
+.headerstyletw .mainNav .navTabs > li{margin-left: 30px;}
+.headerBgtw{width: 60%;}
+.UsersrcShare{float: none;}
+.headertwSocial{margin-left: 15px;}
+.search-btn {margin-left: 15px;}
+.heroflaticon:before {clear: both;display: block;padding-bottom: 10px;}
+.sectionTitletw p{font-size: 14px;}
+.sectionTitletw h3{padding-bottom: 10px;font-size: 20px;}
+.OfficeInfo address span, .OfficeInfo address a{font-size: 13px;line-height: 30px;}
+.MoreInformation .col-sm-6{width: 100%;}
+#accordianShortCode{padding-top: 50px;padding-right: 0;}
+.accordianShortCode .triggerMenu {padding: 4px 10px 10px 10px;}
+.ContactInfotw{padding-left: 15px;padding-right: 5px;}
+.ContactInfotw .infoListtw li{padding: 0 0 21.3px;font-size: 12px;}
+.avaterImgtw img {height: 456px;}
+.testmonialsCarousel {padding-top: 30px;}
+.section .sectionWrapper {padding: 80px 0px 80px 0px;}
+/*Home 2 page End */
+.body-boxed .allWrapper, .body-boxed-2 .allWrapper{width: 750px;}
+/*Boxed Home Page End*/
+#CalingBack{overflow: hidden;}
+/*Service Page End*/
+.sideNavList li a {font-size: 12px;}
+.widgetPara{font-size: 12px;}
+.needQuery {padding: 46px 15px 33px;}
+.featureNavtw > li > a{padding: 12px 15px 8px;}
+.pageTitle h1{font-size: 50px;}
+.post .postTitle h4{font-size: 16px;}
+.post .postDetails{font-size: 14px;}
+.DownloadList li a{font-size: 14px;}
+#protection p{font-size: 14px;}
+.sideNavList li a{font-size: 18px;}
+.widgetPara p{font-size: 14px;}
+.widgetPara p br{display: none;}
+.testContents blockquote p {font-size: 14px;}
+.testBottomContents {margin-top: 130px;}
+.post .postTitle h4 {font-size: 18px;}
+.blogColmnfr .socialShare > li a{font-size: 14px;height: 25px;width: 25px;line-height: 25px;}
+/*Blog Clomun Pages End*/
+.postAuthorContent {width: 100%;}
+.commentLevel .commentContents {width: 78%;}
+.commentLevel2 .commentContents {width: 72%;}
+/*Blog Single Pages End*/
+.RightSideBar .testContents blockquote p{font-size: 13px;}
+.RightSideBar .testBottomContents {margin-top: 45px;font-size: 13px;}
+.project .projectContents{padding: 0 20px;}
+.filterOptions{margin-left: 0;width: 100%;}
+.price{width: 90%;}
+.ProductBg{width: 85%;padding: 53px 20px 58px 32px;}
+.table-responsive {overflow-x: auto;margin-bottom: 50px;padding: 20px 0 0 20px;}
+.table-responsive > table {width: 1170px;}
+.quantity input[type="text"]{height: 30px;}
+.cartProcessBtn {font-size: 9px;}
+.CheckAddress {padding: 0 10px 0 10px;}
+.checkoutTitle {font-size: 17px;}
+.shipingContent h2 {font-size: 24px;}
+.input-group.erronInput{display: block;}
+.errorContents .col-sm-6.col-sm-offset-3{margin-left: 0;width: 100%;}
+.news-letter .news-letterfrm{padding-right: 10px;}
+.news-letter button.submitbtn{top: -40px;left: -18px;}
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 767px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 767px){
+/* responsive nav */
+#responsiveMainNavToggler {display: block;}
+#responsiveMainNavToggler .register > a,
+#responsiveMainNavToggler .login > a {display: block;}
+#responsiveMainNavToggler .formSwitcher {display: none !important;}
+.mainNav {display: none;}
+.home_pagetw #responsiveMainNavToggler{background: #ffffff;color: #0195df;position: absolute;top: 0;left: 0;}
+.headerBgtw{width: 55%;}
+.headerstyletw .sticky.scrollHeaderWrapper{height: 64px;}
+.header-info{text-align: center;}
+.header-info span {font-size: 14px;}
+.top_socialNav{float: none;padding-bottom: 20px;}
+.topSocial{text-align: center;}
+.logo {width: 100%;text-align: center;padding-bottom: 20px;}
+.headTopcompanyInfo .col-sm-8{padding-left: 15px;}
+.header_right {float: none;}
+.header_right .headinfo, .header_right .locationinfo{width:31%}
+.header_right .weeklyOpen{width: 38%;}
+.generalinfo i:before {font-size: 30px;}
+.generalinfo i {padding-right: 5px;}
+.generalinfo strong {font-size: 14px;}
+.generalinfo a {font-size: 14px;}
+.generalinfo p {font-size: 14px;}
+.main-slider .tparrows.preview3, .main-slider .tparrows.preview3{height: 55px !important;width: 55px !important;}
+.main-slider .tparrows.preview3:after{height: 55px !important;line-height: 55px;width: 55px !important;}
+.financeContent h3{font-size: 20px;}
+.financeContent p{font-size: 18px;line-height: 30px;}
+.video_widget img{width: 100%;}
+.sectionTitle .sectionHeader{font-size: 36px;}
+.FinanceGuruDetails .sectionTitle .sectionHeader{padding-top: 50px;}
+.description p{font-size: 15px;line-height: 28px;}
+ul.gurulist li{font-size: 15px;line-height: 28px;}
+.FinanceGuruDetails .btn-lightBlue{margin-top: 28px;}
+.counterOuter{text-align: center;}
+.counterOuter .col-sm-3, .counterOuter .col-sm-2{margin-bottom: 50px;}
+.counterOuter .counter-5{padding-left: 7%;}
+.counter-1, .counter-4{padding-left: 0;}
+.counter h3{font-size: 20px;}
+span.count-text {font-size: 64px;}
+.PlanningImg img{width: 100%;}
+.PlanningImg a{max-height: initial;}
+.contentTitle h3{font-size: 20px;}
+.singlePlanning.noMarginBottom{margin-bottom: 42px!important;}
+.memberAvatar img{width: 100%;}
+.singleteamMember:hover{margin-top: 0; }
+.singleteamMember{margin-bottom: 80px;}
+.memberName{font-size: 18px;}
+.memberJob{font-size: 16px;}
+.FinancNewsletterBg{width: auto;margin-left: 15px;margin-right: 15px;text-align: center;padding: 10px 0;}
+.FinancNewsletterBg .sectionTitle h2{padding-bottom: 20px;}
+.blogPost .owl-controls .owl-nav [class*="owl-"]{top:-110px;left: 0;}
+.blogPost .owl-controls .owl-next{right: inherit;margin-left: 30px!important;}
+.userAvater{float: none;vertical-align: middle;display: inline-block;}
+.nameJobtitle{float: none;display: inline-block;vertical-align: middle;}
+#executiveService .col-sm-7.col-md-offset-5 {margin-left: 37%;}
+.executiveContact .executive_img{width: 75%;top: -405px;}
+.executiveContact .col-sm-4{float: right;width: 48%;}
+#executiveService .sectionWrapper{padding: 50px 0 0;overflow: hidden;}
+.infoContent p{font-size: 16px;}
+.singlecontactInfo{margin-bottom: 30px;}
+#team .col-sm-3, #Planning .col-sm-3{width: 50%;float: left;}
+.topFooter .col-md-4, .topFooter .col-md-2, .topFooter .col-md-3{margin-bottom: 25px; width: 50%;float: left;}
+/*Home 1 page end */
+.UsersrcShare {float: right;}
+.searchHead .headSearch{display: block;}
+.searchHead {width: 100%;}
+#headtoptw .logo {padding-top: 0;}
+.cd-hero-slider .cd-full-width, .cd-hero-slider .cd-half-width{padding-top: 0px;}
+.cd-full-width h2{font-size: 30px;line-height: 30px;}
+.cd-full-width p{font-size: 15px;line-height: 20px;margin-bottom: 10px;}
+.cd-hero-slider .btn{min-width: 140px;font-size: 14px;height: 50px;line-height: 50px;}
+.cd-slider-nav a{padding-top: 10px;}
+.cd-slider-nav{height: auto;}
+.servicImg{padding-top: 50px;}
+.ourTeamCarousel{padding-top: 50px;}
+.contactNewsletter .ContactInfotw{margin-top: 38px;}
+#contacttw .NoPaddingLeft{padding-right: 0;clear: both;}
+.ContactInfotw .sectionTitletw p br{display: none;}
+.ContactInfotw .infoListtw li {padding:0 0 27px;font-size: 15px;}
+#contacttw .col-sm-3, #contacttw .col-sm-4{width: 50%;float: left;padding-left: 0;}
+.avaterImgtw img {height: 455px;}
+/*Home 2 page End */
+.body-boxed .allWrapper, .body-boxed-2 .allWrapper {width: auto;margin-left: 15px;margin-right: 15px;}
+.body-boxed .container, .body-boxed-2 .container {padding-left:  15px;padding-right: 15px;}
+.body-boxed .financeIcon, .body-boxed-2 .financeIcon {width: 55px;height: 55px;}
+/*Boxed Home Page End*/
+.CallingBackFormBg{padding-right: 120px;}
+.CallingBackFormBg:before{right: -190px;}
+/*Service Page End*/
+.postColumn .postMedias{padding-bottom: 20px;}
+.blogColmnth .PostShare .generalBtn, .blogColmnfr .PostShare .generalBtn{font-size: 16px;float: right !important;margin-top: 0px;}
+.blogColmnth .postTitle h2, .blogColmnfr .postTitle h2{font-size: 22px;}
+.blogColmnfr .socialShare > li a {font-size: 17px;height: 30px;width: 30px;line-height: 30px;}
+/*Blog Colmun Pages End*/
+.contactFormArea .checkbox label, .contactFormArea .radio label{display: inline-block;}
+.fromCheckBox{clear: both;}
+.contactFormArea .NoPaddingRight{padding-right: 15px!important;}
+.RightSideBar .testBottomContents {margin-top: 145px;}
+/*Contact Pages End*/
+.faqtab > li > a{font-size: 16px;}
+.faqContent p {font-size: 14px;}
+.productThumb img{width: 100%;}
+.productSummery{width: 40%;}
+.cartProcessBtn {font-size: 100%;margin-bottom: 20px;}
+.subscribePayment{padding-top: 50px;}
+.CheckAddress {padding: 0;padding-bottom: 30px;}
+.loginHere{padding-left: 15px;}
+.errorShare .socialShare{clear: both;}
+.erronInput input.search-query{min-width: 100%;}
+.news-letter .businessman{display: none;}
+.news-letter button.submitbtn{left: -33px;}
+.news-letter .sectionTitle h1.sectionHeader{padding-top: 10px;}
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 660px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 660px){
+#newslatter{overflow: visible;}
+.executive .exe_text p{width: 100%;}
+.executiveContact .executive_img {width: 60%;top: -85px;left: -60px;min-width: auto;}
+#executiveService .col-sm-7.col-md-offset-5 {margin-left: 0;}
+.topFooter .col-md-4, .topFooter .col-md-2, .topFooter .col-md-3{width: 100%;}
+.header_right .headinfo, .header_right .locationinfo {width: 30%;}
+.header_right .weeklyOpen {width: 40%;}
+.ourPlanning .sectionWrapper, .talentTeam .sectionWrapper, #finance .sectionWrapper {padding: 80px 0px 50px 0px;}
+/*Home 1 page end */
+.servicImg{padding-left: 0;padding-right: 23px;}
+.searchHead {width: 55%;}
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 620px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 620px){
+.header-info span {font-size: 100%;}
+.generalinfo strong {font-size: 100%;}
+.executiveContact .executive_img {width: 65%;top: -75px;left: -80px;}
+/*Home 1 page end */
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 580px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 580px){
+.headinfo:after {display: none;}
+.bannerBigImage{left:150px!important;}
+#team .col-sm-3, #Planning .col-sm-3 {width: auto;float: none;}
+/*Home 1 page end */
+.slideTxt{display: none;}
+.headerBgtw {width: 45%;}
+/*Home 2 Page End*/
+.CallingBackleft .sectionTitle .sectionHeader{font-size: 25px;}
+.CallingBackFormBg:before {right: -60px;}
+/*Service Page End*/
+.commentLevel1 .commentContents, .commentLevel2 .commentContents {width: 100%;}
+.commentLevel2 {width: 95%;padding: 38px 0 35px 20px;}
+.SinglePost .postWrapper {padding-left: 0;}
+.authorWrapper{margin-left: 0px;}
+.ProductBg{padding: 53px 10px 58px 15px;}
+.news-letter-popup .wrapper{min-height: 270px;}
+.news-letter .sectionTitle p{font-size: 13px;}
+.news-letter .sectionTitle p br{display: none;}
+.news-letter h1.sectionHeader span.textlightBlue, .news-letter .sectionTitle h1.sectionHeader{font-size: 30px;}
+.news-letter .news-letterfrm{padding: 0;}
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 560px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 560px){
+.executiveContact .executive_img {width: 80%;top: -75px;left: -150px;}
+/*Home 1 page end */
+.avaterImgtw img {height: 479px;}
+.headerTw .headInfotw, .headerTw .searchHead {width: 50%;}
+/*Home 2 page End*/
+ul.quantityNumber{padding:0;}
+.productQuantity, .productSummery{width: 100%;}
+.shopitnowBtn{margin-top: 25px;}
+.stepWizardStep h4{display: none;}
+.loginContent{width: 100%;}
+
+
+}
+/*------------------------------------------------------------------------------*/
+/*                    Width : 460px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 460px){
+.header-info span {font-size: 100%;clear: both;display: block;}
+.main-slider .tparrows.preview3.tp-rightarrow {top: 32% !important;}
+.sectionTitle .sectionHeader {font-size: 30px;}
+.executiveContact .executive_img {width: 90%;}
+/*Home 1 page end */
+.featureListRht {width: 100%;padding-top: 20px;}
+.generalinfotw p{font-size: 100%;}
+.headerBgtw {width: 35%;}
+#contacttw .col-sm-3, #contacttw .col-sm-4{width: 100%;}
+.avaterImgtw img {width:100%;height: auto;margin-bottom: -5px;}
+.contactNewsletter .ContactInfotw{margin-top: 0;}
+.default-gallery-item .inner-box .OverlayContent h3 a{font-size: 20px;line-height: 28px;}
+.default-gallery-item .inner-box .OverlayContent p{font-size: 15px;line-height: 18px;}
+.heroflaticon:before {font-size: 25px;}
+.lang #language{width: 100%;}
+.CallingBackFormBg{padding-top: 200px;}
+.CallingBackFormBg:before {top: 15px;right: -25px;}
+/*Service Page End*/
+.featureNavtw > li > a {padding: 12px 10px 8px;font-size: 14px;}
+ul.quantityNumber {float: none;text-align: center;}
+.shopitnowBtn{margin: 25px 0;float: none;text-align: center;display: block;width: 100%;text-align: center;}
+.checkoutWrapper .shippingCartContent {padding-right: 0px;}
+.shipingContent button{margin-bottom:30px;}
+.shipingContent h2 {font-size: 22px;line-height: 30px;}
+
+
+
+
+}
+
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 400px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 400px){
+.sectionTitle .sectionHeader {font-size: 25px;}
+.header_right .headinfo, .header_right .locationinfo{width:50%;}
+.header_right .weeklyOpen{width: 100%;text-align: center;padding-top: 15px;}
+.main-slider .tparrows.preview3:after {height: 40px !important;line-height: 40px;width: 40px !important;}
+.main-slider .tparrows.preview3, .main-slider .tparrows.preview3 {height: 40px !important;width: 40px !important;}
+.bannerBigImage {left: 130px !important;}
+.postContents {width: 100%;padding-top: 20px;padding-left: 0;}
+.executiveContact .executive_img {width: 100%;}
+/*Home 1 page end */
+.addInfotw p{font-size: 11px;}
+.OverlayContent{padding: 15px;width: 300px;}
+.InfoTabFrature .featureNav > li > a {font-size: 13px;padding: 3px 16px 6px;}
+.accordianShortCode .triggerRow > a{font-size: 15px;}
+.accordianShortCode .triggerMenu p{font-size: 14px;line-height: 22px;}
+.sectionTitletw h1{font-size: 25px;line-height: 25px;}
+/*Home2 page end */
+.open-cart{width: 100%;}
+/*Home 3 page End */
+.pageInfoBg{background-size: cover;}
+.commentDetails{font-size: 12px;}
+.post .postSlider .owl-controls .owl-nav div {height: 30px;width: 30px;line-height: 25px;}
+.postSlider .owl-controls .owl-nav .owl-prev {left: 0;}
+.postSlider .owl-controls .owl-nav .owl-next {right: 0;}
+.cartTotals td{font-size: 14px;}
+.amount{font-size: 16px;}
+.blueBorderBtn{margin-bottom: 20px;}
+.fourOfourimage h2{font-size: 22px;}
+.news-letter button.submitbtn {left: -20px;}
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 355px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 355px){
+.executiveContact .col-sm-4 {float: right;width: 55%;margin-left: 0;}
+.executiveContact {padding-top: 30px;}
+.contact-form-right {padding-bottom: 30px;}
+/*Home 1 page end */
+.addInfotw p {font-size: 100%;}
+.headerTw .headInfotw, .headerTw .searchHead {width: 100%;}
+.headerBgtw {width: 26%;}
+.OverlayContent {padding: 0px 0 10px;width: 255px;}
+.cd-hero-slider .btn {min-width: 100px;font-size: 12px;height: 40px;line-height: 40px;}
+.cd-full-width h2 {font-size: 25px;line-height: 25px;}
+.cd-full-width p br{display: none;}
+.headerBgtw{background: transparent;}
+.default-gallery-item .inner-box .overlay_content{padding: 22px 0;}
+/*Home 2 page End*/
+.body-boxed .executiveContact .executive_img, .body-boxed-2 .executiveContact .executive_img {top: -50px;}
+/*Box Home Page end*/
+.OpningTimes{width: 100%;}
+.CallingBackFormBg:before {background-size: 90%;}
+.CallingBackFormBg {padding-top: 160px;padding-right: 65px;}
+/*Service Page End*/
+.breadcrumb{font-size: 14px;}
+.pageTitle h1 {font-size: 45px;}
+.featureNavtw > li > a {padding: 12px 5px 8px;font-size: 12px;}
+#protection p {font-size: 13px;}
+.blogPostShare li {margin-right: 0px;}
+.PostShare .ShareTitle{margin-right: 0px;}
+.col-xs-6.col-sm-3.productItem{width: 100%;}
+ul.quantityNumber li {width: 70px;height: auto;}
+.transferFund{font-size: 16px;}
+
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 330px
+/*------------------------------------------------------------------------------*/
+@media only screen and (max-width: 330px){
+.generalinfo i:before {font-size: 25px;}
+.financeContent h3 {font-size: 17px;}
+.financeContent p {font-size: 15px;line-height: 25px;}
+ul.gurulist li i {padding-right: 5px;}
+.sectionTitle p{font-size: 15px;}
+.weektime p{text-align: start;}
+.executiveContact .executive_img{top: -60px;}
+.sectionTitle .sectionHeader {font-size: 22px;}
+.executive .opening_text p{font-size: 14px;}
+/*Home 1 page end */
+.default-gallery-item .inner-box .OverlayContent h3 a {font-size: 18px;}
+.default-gallery-item .inner-box .OverlayContent p {font-size: 13px;}
+.OverlayContent{width: 240px;}
+.featureList li {font-size: 13px;}
+.InfoTabFrature .featureNav > li > a{padding: 3px 10px 6px;}
+.homethPage .UserLogin .flaticon-people-1:before{display: none;}
+/*Home 2 page end*/
+.body-boxed .executiveContact .executive_img, .body-boxed-2 .executiveContact .executive_img {top: 8px;}
+/*Boxed Home Page End*/
+.pagination > li > a, .pagination > li > span{width: 55px;}
+.showTxt{font-size: 10px;}
+
+
+
+}

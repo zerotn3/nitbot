@@ -1,0 +1,157 @@
+extends homepage
+
+block content
+  .pageInfo.lightSection
+    .pageInfoBg.colorBorder.clearfix
+      .cover
+      .container
+        .row
+          .col-sm-12.text-center
+            .pageTitle
+              h1
+                | Our
+                span.textlightBlue  FAQs
+                span.generalBorder
+            // end of pageTitle
+          // end of col12
+        // end of row
+      // end of container
+    // end of pageInfoBg
+    .container
+      .row
+        .col-sm-12
+          ul.breadcrumb
+            li
+              a(href='#') Home
+            li.active Faq
+          // end of breadcrumb
+        // end of col12
+      // end of row
+    // end of container
+  // end of page info
+  #ourFaq.faq.colorBorder.clearfix.lightSection
+    .sectionWrapper
+      .container
+        .row
+          .col-sm-5
+            .faqNavtabs
+              // Nav tabs
+              ul.nav.nav-tabs.faqtab(role='tablist')
+                li.active(role='presentation')
+                  a(href='#becomeanauthor', aria-controls='becomeanauthor', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  How can I become Bitrain member ?
+                li(role='presentation')
+                  a(href='#HelpfulResources', aria-controls='HelpfulResources', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  Can I have more than one account with you ?
+                li(role='presentation')
+                  a(href='#muchmoney', aria-controls='muchmoney', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  Are there any hidden fees ?
+                li(role='presentation')
+                  a(href='#promotionalBasis', aria-controls='promotionalBasis', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  Do you offer telephone support ?
+                li(role='presentation')
+                  a(href='#Introduction', aria-controls='Introduction', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  How can I request a withdraw ?
+                li(role='presentation')
+                  a(href='#programWork', aria-controls='programWork', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  When can I request to withdraw (minimum withdraw) ?
+                li(role='presentation')
+                  a(href='#ImagesVideos', aria-controls='ImagesVideos', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  How frequently are you updating my accoun tactivities ?
+                li(role='presentation')
+                  a(href='#Items', aria-controls='Items', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  Where can I change my Password or Withdraw code ?
+                li(role='presentation')
+                  a(href='#Trademarked', aria-controls='Trademarked', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  What if I forgot my account password ?
+                li(role='presentation')
+                  a(href='#ReferralIncome', aria-controls='ReferralIncome', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  How can I change my E-mail address ?
+                li(role='presentation')
+                  a(href='#getSupport', aria-controls='getSupport', role='tab', data-toggle='tab')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                    |  How can I get support for an item which isn't working
+              // end of nav-tabs
+            // end of faqNavtab
+          // end of col5
+          .col-sm-7
+            // Tab panes
+            .tab-content.faqContent.clearfix
+              #becomeanauthor.tab-pane.fade.in.active(role='tabpanel')
+                h2.faqQuestion How can I become Bitrain member ?
+                p
+                  | Please click here, fill in the signup form, then proceed to activate your registration. The signup procedure was made quite easy & fast for your convenience (takes ~1min).
+                //p
+                  | Possimus, fugiat iste nisi tempore nesciunt nemo fuga? Nesciunt, delectus laboriosam nisi repudiandae nam fuga saepe animi recusandae. Asperiores, provie, doloremque, adipisci eaque alias dolore molestias assumenda quasi sanisi ab illo ex nesciunt nobis laboriosam iusto quia nulla ad voluptatibus iste beatae voluptas corrupti facilis accusamus recusandae sequi debitis reprehenderit quibusdam. Facilis eligendi a exercitationem nisi et placeat excepturi velit! Asperiores, provident, esse, doloremque, adipisci eaque alias dolore molestias assumenda quasi saepe nisi ab illo ex nesciunt nobis laboriosam iusto quia nulla ad voluptatibus iste beatae voluptas corrupti facilis accusamus recusandae sequi debitis reprehenderit quibusdam. Facilis eligendi a e.
+              // end of tabpanel
+              #HelpfulResources.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion Can I have more than one account with you ?
+                p
+                  | Yes, you can have more than one account per user unless you were given a special admin permission to have more.
+                //p
+                  | Quisque velit nisi, pretium ut lacinia in, elementum id enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt.
+                //p
+                  | Cras ultricies ligula sed magna dictum porta. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta.
+              // end of tabpanel
+              #muchmoney.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion Are there any hidden fees ?
+                p
+                  | No, there are no hidden fees. Registration and account holding is completely free.
+              // end of tabpanel
+              #promotionalBasis.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion Do you offer telephone support ?
+                p
+                  | You can see our member`s feedback and enter your own in any of our social hubs, online rating, reviews and forum sites that can be found quickly and easily web search. We highly appreciate our members feedbacks, it help us to server our members better so please take a moment to share your own experience with Bitrain.
+              // end of tabpanel
+              #Introduction.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion How can I request a withdraw ?
+                p
+                  | To make a request you need to log into your account and click on "WITHDRAW" in the top menu, then fill in the necessary info to complete your withdrawal request.
+              // end of tabpanel
+              #programWork.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion When can I request to withdraw (minimum withdraw) ?
+                p
+                  | You can request to withdraw at anytime, once you reach our minimum amount
+              // end of tabpanel
+              #ImagesVideos.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion How frequently are you updating my accoun tactivities ?
+                p
+                  | Your account is updated automatically in real live 24/7 and you can always access your account to keep track of it.
+              // end of tabpanel
+              #Items.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion Where can I change my Password or Withdraw code ?
+                p
+                  | Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur aliquet quam id dui posuere blandit. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+              // end of tabpanel
+              #Trademarked.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion What if I forgot my account password ?
+                p
+                  | You need to log into your secure account area and click on "PROFILE", there you can change your password and withdraw code.
+              // end of tabpanel
+              #ReferralIncome.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion Q. Tips for Increasing Your Referral Income
+                p
+                  | In that case you must reset your password, by entering your username or e-mail address into our secure "Forgot Password" Page. You will receive an e-mail to confirm this action and identify yourself before we proceed with resetting your password.
+              // end of tabpanel
+              #getSupport.tab-pane.fade(role='tabpanel')
+                h2.faqQuestion How can I change my E-mail address ?
+                p
+                  | No. Only use one email for you.
+              // end of tabpanel
+            // end of tab-content
+          // end of col7
+        // end of row
+      // end of container
+    // end of sectionWrapper
+  // end of faq
+

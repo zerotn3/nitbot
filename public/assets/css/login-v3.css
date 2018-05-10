@@ -1,0 +1,188 @@
+#mainView {
+  min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+}
+
+.login-content {
+  background-image: url(../images/bg_login.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  overflow: auto;
+}
+
+.center-login .left-login .join-us-desc {
+  text-align: center;
+  margin: 30px 30px 40px;
+  font-size: 13px;
+  font-style: italic;
+  opacity: .5;
+}
+
+.center-login {
+  width: 662px;
+  min-height: 400px;
+  position: relative;
+  top: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateY(-50%);
+}
+
+.center-login .left-login {
+  width: 263px;
+  height: 376px;
+  background: rgba(57, 73, 171,.8);
+  position: absolute;
+  top: 50%;
+  margin-top: -188px;
+  border-radius: 2px;
+  color: #FFF;
+  text-align: center;
+  -ms-box-shadow: -2px 0 20px 0 rgba(0,0,0,.4);
+  box-shadow: -2px 0 20px 0 rgba(0,0,0,.4);
+}
+
+.login-title {
+  font-size: 26px;
+  margin-top: 60px;
+  display: block;
+}
+
+.center-login .left-login .buttonTransparent {
+  border-radius: 100px;
+  width: 206px;
+  height: 45px;
+  font-size: 14px;
+  border: 1px solid #FFF;
+  font-family: 'Open Sans', sans-serif;
+  background: rgba(255,255,255,0);
+  font-weight:600;
+  cursor: pointer;
+}
+
+.center-login .right-login {
+  width: 399px;
+  height: 100%;
+  background-color: #FFF;
+  float: right;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-box-shadow: -2px 0 20px 0 rgba(0,0,0,.4);
+  box-shadow: -2px 0 20px 0 rgba(0,0,0,.4);
+}
+
+.center-login .right-login .icon-timo {
+  transform: scale(0.5,.5);
+  -webkit-transform: scale(0.5,.5);
+  -moz-transform: scale(0.5,.5);
+  -ms-transform: scale(0.5,.5);
+  margin-top: 40px;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-input {
+  width: 250px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.login-content .form-group, .resetPassword-content .form-group {
+  margin-bottom: 20px;
+}
+
+input:not([type]).input-kyc, input[type=email].input-kyc, input[type=password].input-kyc, input[type=text].input-kyc, textarea.input-kyc {
+  height: 48px;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 0 0 rgba(32,206,153,.5);
+  font-family: "Open Sans";
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.login-content input:not([type]).input-kyc, .login-content input[type=email].input-kyc, .login-content input[type=password].input-kyc, .login-content input[type=text].input-kyc, .login-content textarea.input-kyc, .resetPassword-content input:not([type]).input-kyc, .resetPassword-content input[type=email].input-kyc, .resetPassword-content input[type=password].input-kyc, .resetPassword-content input[type=text].input-kyc, .resetPassword-content textarea.input-kyc {
+  border: 1px solid #bebcc4;
+  font-size: 16px;
+  color: #333;
+}
+
+.content-input .buttonPurple {
+  background-color: #3949ab;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -os-border-radius: 100px;
+  height: 45px!important;
+  font-size: 14px;
+  font-family: Open Sans;
+}
+
+.btn-kyc {
+  width: 100%;
+  height: 56px;
+}
+
+.btn-default-green {
+  font-weight: 900;
+  font-size: 16px;
+  color: #fff;
+  height: 48px;
+  transition: all .3s ease 0s;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  outline: 0;
+}
+
+.content-input .link-reset-password {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.content-input .link-reset-password a {
+  font-size: 12px;
+  font-style: italic;
+  text-decoration: underline;
+  color: #888;
+}
+
+.content-input .label-floatlabel {
+  z-index: 1000;
+  color: #3949ab!important;
+}
+
+.label-floatlabel {
+  left: 16px!important;
+  top: 3px!important;
+  font-weight: 400;
+  font-size: 11px!important;
+  color: #757575!important;
+  display: inline!important;
+}
+
+.lbResult {
+  color: #e65365;
+  font-style: italic;
+  font-weight: 300;
+  margin: 15px auto 0;
+}
+
+.text-help[data-fv-result=INVALID] {
+  color: #e65365;
+}
+
+button, button:active, button:active:focus, button:focus {
+  outline: 0!important;
+}

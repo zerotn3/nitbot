@@ -1,0 +1,72 @@
+extends ../layout
+
+block content
+  .panel
+    .row
+      .col-xs-12
+        .example
+          .ribbon.ribbon-danger
+            span.ribbon-inner IMPORTANT!
+          p
+            | Your first donation recipient may change if you reload this page. We have made every effort to assign members the proper position in your team and in order to prevent any problems we ask that when you are ready to upgrade, please send your payment to the member shown and do not close this window until you submit the form below.
+
+        .step.current
+          span.step-number 1
+          .step-desc
+            span.step-title DEPOSIT 0.3 BTC
+            p Send the Bitcoins to address below
+        .panel-body
+          .card
+            img.card-img-top.img-fluid(src='/assets/images/admin_qr_code.jpg', alt='Card image cap', height=200, width=200)
+            <br>
+              h5.card-title Blockchain Wallet:
+               a.tag-primary.white  1AzE6BndjicsWu3wFrcVyCcAcLAnipjUty
+        .step.current
+          span.step-number 2
+          .step-desc
+            span.step-title SUBMIT THE TRANSACTION
+            p Send the Bitcoins to address below
+        .panel-body
+          .card.card-bordered.card-outline-success
+            .card-block
+              h4  Where to find the Transaction Hash ID after you made payment?
+              ol
+                li
+                  | Go to
+                  a(href='https://blockchain.info/') https://blockchain.info/
+                li
+                  | Copy the Bitcoin Wallet address you see in Step 1 and paste it in the search box on Blockchain.info then click on search.
+                li
+                  | On the next page, look for Transactions (Oldest First). Just below that you will see a long string of characters.
+                li
+                  | Copy that long string of characters and come paste it in here in the Transaction Hash ID field.
+                li
+                  | Click on Submit. Voila, if you've done it correctly your upgrade will be in effect as soon as our automated system approves the transaction.
+              .m-b-10
+                b
+                  span.red WARNING!
+                  |  For users of LocalBitcoins.com, Xapo.com and similar exchanges:
+                |         Our automated system cannot verify all transactions from these websites. If you use localbitcoins.com and xapo.com we
+                |         kindly ask you to create a Free Bitcoin Wallet with
+                a(href='https://blockchain.info/wallet/#/') https://blockchain.info/wallet/#/
+                |         to do transactions safely and securely on our platform.
+                |         We want all transactions to be secure and verifiable and thus they need to happen on the blockchain.
+                |         Some wallet services allow for internal transfers without running it through the blockchain and that
+                |         is unacceptable to Bitrain. Please ensure you have a blockchain.info wallet to guarantee you have a safe donating experience.
+          h4.example-title Transaction Hash ID
+          form.form-group(id='active-form', action="/account/active", method='post')
+            input(type='hidden', name='_csrf', value=_csrf)
+            .form-group
+              input.form-control.focus(type='text', name = "hash_cd", id= "hash_cd", value=block_hash, minlength=20, maxlength=68, required)
+            .form-group
+              button.btn.btn-primary Submit
+
+              script.
+                $('button').click(function () {
+                  if($('hash_cd') == ""){
+                    alert("Please input hashcod.");
+                  }
+                  $.post('/account/active', {data: ''}, function (data) {
+                    console.log(data);
+                  });
+                }, 'json');

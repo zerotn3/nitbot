@@ -1,0 +1,27 @@
+extends ../auth
+
+block content
+  .page.vertical-align.text-xs-center(data-animsition-in='fade-in', data-animsition-out='fade-out')
+    .page-content.vertical-align-middle
+      .panel
+        .panel-body
+          img.icon-timo(src='/assets/images/404-page.png', alt='')
+          header
+            h1.animation-slide-top Page Not Found !
+          //p.error-advise YOU SEEM TO BE TRYING TO FIND HIS WAY HOME
+
+          a.btn.btn-primary.btn-round(href='../login') GO TO HOME PAGE
+          | &nbsp;
+          | &nbsp;
+          | &nbsp;
+          a.btn.btn-primary.btn-round(href='../contact') CONTACT ADMIN
+          footer.page-copyright
+            p WEBSITE BY BITRAIN.INFO
+            p © 2016. All RIGHT RESERVED.
+            .social
+              a(href='javascript:void(0)')
+                i.icon.bd-twitter(aria-hidden='true')
+              a(href='javascript:void(0)')
+                i.icon.bd-facebook(aria-hidden='true')
+              a(href='javascript:void(0)')
+                i.icon.bd-dribbble(aria-hidden='true')

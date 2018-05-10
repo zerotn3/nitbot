@@ -1,0 +1,88 @@
+nav.site-navbar.navbar.navbar-default.navbar-fixed-top.navbar-mega.navbar-inverse(role='navigation')
+  .navbar-header
+    button.navbar-toggler.hamburger.hamburger-close.navbar-toggler-left.hided(type='button', data-toggle='menubar')
+      span.sr-only Toggle navigation
+      span.hamburger-bar
+    button.navbar-toggler.collapsed(type='button', data-target='#site-navbar-collapse', data-toggle='collapse')
+      i.icon.md-more(aria-hidden='true')
+    .navbar-brand.navbar-brand-center.site-gridmenu-toggle(data-toggle='gridmenu')
+      img.navbar-brand-logo(src='/assets/images/new_logo.png', title='Bitrain')
+      span.navbar-brand-text.hidden-xs-down  Bitrain
+    button.navbar-toggler.collapsed(type='button', data-target='#site-navbar-search', data-toggle='collapse')
+      span.sr-only Toggle Search
+      i.icon.md-search(aria-hidden='true')
+  .navbar-container.container-fluid
+    // Navbar Collapse
+    #site-navbar-collapse.collapse.navbar-collapse.navbar-collapse-toolbar
+      // Navbar Toolbar
+      ul.nav.navbar-toolbar
+        li#toggleMenubar.nav-item.hidden-float
+          a.nav-link(data-toggle='menubar', href='#', role='button')
+            i.icon.hamburger.hamburger-arrow-left
+              span.sr-only Toggle menubar
+              span.hamburger-bar
+        li#toggleFullscreen.nav-item.hidden-sm-down
+          a.nav-link.icon.icon-fullscreen(data-toggle='fullscreen', href='#', role='button')
+            span.sr-only Toggle fullscreen
+        li.nav-item.hidden-float
+          a.nav-link.icon.md-search(data-toggle='collapse', href='#', data-target='#site-navbar-search', role='button')
+            span.sr-only Toggle Search
+        li.nav-item.hidden-float
+          a.nav-link
+            span
+              #countdown.num.white-600
+                input(type="hidden", value=count_ending)
+                span.days 00
+                | :
+                span.hours 00
+                | :
+                span.minutes 00
+                | :
+                span.seconds 00
+        li.nav-item.hidden-float
+          a.nav-link
+            span
+              .num.white-600
+                .icon.fa.fa-users.mr-5
+                | #{downline || 0} DOWNLINE
+        li.nav-item.hidden-float
+          a.nav-link(href="/account/mylink")
+            span
+              .num.white-600
+                .icon.fa.fa-user-plus.mr-5
+                | #{countF1} F1
+      // End Navbar Toolbar
+      // Navbar Toolbar Right
+      ul.nav.navbar-toolbar.navbar-right.navbar-toolbar-right
+        li.nav-item
+          a.nav-link
+            - if (user.active)
+              span.white-600 LEVEL #{user.profile.level}
+            - else
+              span.red-600 ACCOUNT IS NOT ACTIVATED YET
+        li.nav-item.dropdown
+          a.nav-link.navbar-avatar(data-toggle='dropdown', href='#', aria-expanded='false', data-animation='scale-up', role='button')
+            span.avatar.avatar-online
+              img.profile(data-name=user.full_nm, alt=user.full_nm, style="border: 1px solid white", src=user.avatar())
+              i
+          .dropdown-menu(role='menu')
+            a.dropdown-item(href='/account', role='menuitem')
+              i.icon.md-account(aria-hidden='true')
+              |  Profile
+            .dropdown-divider
+            a.dropdown-item(href='/logout', role='menuitem')
+              i.icon.md-power(aria-hidden='true')
+              |  Logout
+      .navbar-brand.navbar-brand-center
+        a(href='/dashboard')
+          img.navbar-brand-logo(src='/assets/images/new_logo.png', title='Bitrain')
+    // End Navbar Collapse
+    // Site Navbar Seach
+    #site-navbar-search.collapse.navbar-search-overlap
+      form(role='search')
+        .form-group
+          .input-search
+            i.input-search-icon.md-search(aria-hidden='true')
+            input.form-control(type='text', name='site-search', placeholder='Search...')
+            button.input-search-close.icon.md-close(type='button', data-target='#site-navbar-search', data-toggle='collapse', aria-label='Close')
+    // End Site Navbar Seach
