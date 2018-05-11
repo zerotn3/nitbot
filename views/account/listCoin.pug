@@ -46,6 +46,7 @@ block content
             th #No
             th Market Name
             th Giá mua
+            th Giá Chốt Theo %
             th Thời gian Vào
             th Loại
         tbody
@@ -57,6 +58,7 @@ block content
                 td
                   a(href='https://bittrex.com/Market/Index?MarketName=' + coin.marketNn, target="_blank")= coin.marketNn
                 td= coin.enterPrice
+                td= coin.type == 'SELL' ? '' : coin.enterPrice == null ? '' : ((coin.enterPrice * coin.percentSell) / 100 + coin.enterPrice)
                 td= coin.enterTime
                 td= coin.type
 

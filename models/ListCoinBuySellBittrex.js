@@ -12,6 +12,7 @@ const listCoinBuySellBittrexSchema = new mongoose.Schema({
   marketNn : String,
   enterPrice : Number,
   enterTime: String,
+  percentSell: String,
   type: String
 }, { timestamps: true });
 
