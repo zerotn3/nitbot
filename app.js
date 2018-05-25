@@ -283,6 +283,8 @@ app.get('/verify_email', userController.getVerifyEmail);
 app.get('/listCoin', passportConfig.isAuthenticated, NavigationMiddleware, listCoinController.getReqWithdrawnList);
 app.get('/admin/configbittrex', passportConfig.isAuthenticated, NavigationMiddleware, configBittrexController.index);
 app.post('/admin/configBittrex', configBittrexController.postConfigBittrex);
+//app.get('/removeCheck', passportConfig.isAuthenticated, userController.withdrawnCheckDone);
+app.get('/removeCheck', passportConfig.isAuthenticated, listCoinController.removeCheck);
 
 /**
  * API examples routes.
@@ -334,12 +336,12 @@ app.listen(app.get('port'), () => {
   topVolumeBittrex.funcCheckListTopCoin();
 
   let countrun = 0;
-  let minutes = 0.5, the_interval = minutes * 60 * 1000;
+  let minutes = 0.05, the_interval = minutes * 60 * 1000;
   setInterval(function () {
     topVolumeBittrex.startFindBittex();
     topVolumeBittrex.funcCheckListTopCoin();
     countrun = countrun + 1;
-    console.log("==========Chạy được   " + countrun + "   lần=============")
+    //console.log("==========Chạy được   " + countrun + "   lần=============")
   }, the_interval);
 });
 

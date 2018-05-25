@@ -10,6 +10,7 @@ const relationship = require("mongoose-relationship");
 
 const listCoinTopBittrexSchema = new mongoose.Schema({
   marketNn : String,
+  minTradeSize : Number,
   enterPrice : Number,
   lastTime: Number,
   matchPrice: Number,
@@ -18,7 +19,8 @@ const listCoinTopBittrexSchema = new mongoose.Schema({
   sellFlag: String,
   activeFlag: String,
   percentSell: Number,
-  buy_pri: Number
+  buy_pri: Number,
+  btcQty: Number,
 }, { timestamps: true });
 
 //listCoinBittrexSchema.plugin(relationship, { relationshipPathName: 'user' });

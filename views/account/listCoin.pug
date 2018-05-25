@@ -20,10 +20,12 @@ block content
             th Đang Chạy
             th Giá Vào
             th % Chốt
+            th Bitcoin QTY
             th Time Enter
+            th Bỏ Check
         tbody
           - var i = 0;
-            each usr in listCoin
+            each usr in listCoinActive
               - i += 1
               tr
                 td= i
@@ -32,7 +34,11 @@ block content
                 td= usr.activeFlag == 'Y' ? 'YES' : 'NO'
                 td= usr.buy_pri
                 td= usr.percentSell == null ? '' : usr.percentSell + '%'
+                td= usr.btcQty
                 td= moment(usr.lastTime).format(DATE_FORMAT)
+                td
+                  a.btn.btn-md.btn-icon.btn-pure.btn-primary.on-default.remove-row.waves-effect(href='/removeCheck?code=' + usr.marketNn.toString(), data-toggle='tooltip', data-original-title='Sent', onclick="return confirm('Bạn chắc chắn sẽ bỏ check coin này không ?');")
+                    i.icon.md-check(aria-hidden='true')
   .panel
     header.panel-heading
       .panel-actions
@@ -49,6 +55,8 @@ block content
             th Giá Chốt Theo %
             th Thời gian Vào
             th Loại
+            th Số lượng
+            th Giá
         tbody
           - var i = 0;
             each coin in listBuySell
@@ -58,9 +66,11 @@ block content
                 td
                   a(href='https://bittrex.com/Market/Index?MarketName=' + coin.marketNn, target="_blank")= coin.marketNn
                 td= coin.enterPrice
-                td= coin.type == 'SELL' ? '' : coin.enterPrice == null ? '' : ((coin.enterPrice * coin.percentSell) / 100 + coin.enterPrice)
-                td= coin.enterTime
+                td= coin.type == 'SELL' ? '' : coin.enterPrice == null ? '' : ((coin.enterPrice * coin.percentSell) / 100 + coin.enterPrice).toFixed(8)
+                td= moment(coin.enterTime).format(DATE_FORMAT)
                 td= coin.type
+                td= coin.qty
+                td= coin.rate
 
   .panel
     .col-xl-6.col-md-6.col-xs-12
@@ -76,7 +86,8 @@ block content
             .form-group.control-group
               label.form-control-label Select Wallet
               .controls
-                select#marketNm.form-control(name="marketNm",required)
+                input#marketNm.form-control(type='text',name='marketNm', list='marketNmlst')
+                datalist#marketNmlst
                   - var i = 0;
                     each coin in listCoin
                       option(value=coin.marketNn) #{coin.marketNn}
@@ -88,6 +99,10 @@ block content
               label.form-control-label Đặt % chốt lệnh:
               .controls
                 input.form-control(type='text', name='percentSell', id='percentSell', placeholder='E.g 3, 4, 5', required )
+            .form-group.control-group
+              label.form-control-label Số BTC mỗi lệnh:
+              .controls
+                input.form-control(type='text', name='btcQty', id='btcQty', placeholder='E.g 0.1 ~ 1', required )
             .form-group.control-group
               .span
                 input(type='checkbox', value='Y', name='activeFlag', id='activeFlag', required)

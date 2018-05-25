@@ -208,6 +208,16 @@ function _checkCandle(marketNm) {
  * @param res
  */
 exports.getReqWithdrawnList = (req, res) => {
+  let p0 = new Promise((resolve, reject) => {
+    ListCoinTopBittrex.find({activeFlag: 'Y'}, (err, listCoin) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(listCoin);
+      }
+    });
+  });
+
   let p1 = new Promise((resolve, reject) => {
     ListCoinTopBittrex.find({}, (err, listCoin) => {
       if (err) {
@@ -217,6 +227,7 @@ exports.getReqWithdrawnList = (req, res) => {
       }
     });
   });
+
   let p2 = new Promise((resolve, reject) => {
     ListCoinBuySellBittrex.find({}, (err, listBuySell) => {
       if (err) {
@@ -227,12 +238,13 @@ exports.getReqWithdrawnList = (req, res) => {
     });
   });
 
-  Promise.all([p1, p2])
+  Promise.all([p0, p1, p2])
     .then((data) => {
       res.render('account/listCoin', {
         title: 'List Coin',
-        listCoin: data[0],
-        listBuySell: data[1],
+        listCoinActive: data[0],
+        listCoin: data[1],
+        listBuySell: data[2],
       });
     })
     .catch((err) => {
@@ -265,6 +277,23 @@ function getPerWL(coinNm, timeenterPrice, enterPrice) {
     }, {startTime: timeenterPrice, endTime: timeenterPrice + 4500000});
   })
 }
+
+exports.removeCheck = (req, res) => {
+  const reqCode = req.query.code;
+  ListCoinTopBittrex.update({marketNn: reqCode}, {
+    $set: {
+      activeFlag: 'N',
+      buyFlag: 'N'
+    }
+  }, (err, reqBtc) => {
+    if (err) {
+      req.flash('errors', err);
+      return res.redirect('/listCoin');
+    } else {
+      return res.redirect('/listCoin');
+    }
+  });
+};
 
 
 

@@ -13,7 +13,10 @@ const listCoinBuySellBittrexSchema = new mongoose.Schema({
   enterPrice : Number,
   enterTime: String,
   percentSell: String,
-  type: String
+  type: String,
+  orderId: String,
+  qty: Number,
+  rate: Number
 }, { timestamps: true });
 
 //listCoinBittrexSchema.plugin(relationship, { relationshipPathName: 'user' });
