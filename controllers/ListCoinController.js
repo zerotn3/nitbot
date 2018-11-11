@@ -3,9 +3,11 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
+
 const ListCoinBittrex = require('../models/ListCoinBittrex');
 const ListCoinTopBittrex = require('../models/ListCoinTopBittrex');
 const ListCoinBuySellBittrex = require('../models/ListCoinBuySellBittrex');
+const ListCoinBittrexSideWay = require('../models/ListCoinBittrexSideWay');
 
 const url = require('url');
 const redirect_after_login = "/dashboard";
@@ -24,6 +26,7 @@ const RequestBtc = require('../models/RequestBtc');
 const bittrex = require('node-bittrex-api');
 const getStandardDeviation = require('get-standard-deviation');
 const BB = require('technicalindicators').BollingerBands;
+const ADX = require('technicalindicators').ADX;
 
 
 const binance = require('node-binance-api');
@@ -70,73 +73,67 @@ function checkBetweenTwoBB(marketNm) {
   });
 }
 
-function getListCoin() {
-  let promise;
-  //delete list coin before delete
-  deleteListCoinBeforeScan();
+const getListCoin = async () => {
+  await
+  deleteListCoinBeforeScan().then((del) => {
+    bittrex.getmarketsummaries(function (data, err) {
+      if (err) {
+        return console.error(err);
+      }
+      //Chỉ get cặp BTC va volume > 500
+      data.result = _.filter(
+        data.result, u => u.MarketName.toString().indexOf('BTC-') > -1
+          && u.BaseVolume > 500
+        //&& _spread(u.Last, u.Ask, u.Bid) > 0.2
+        //&& _checkTrend(u.MarketName) != 'up'
+        //&& _checkADX(u.MarketName) <= 25
+        //&& _checkCandle(u.MarketName) != '2red'
+      );
+
+      for (let i in data.result) {
+        let coinRes = data.result[i];
+        const listcoin = new ListCoinBittrexSideWay({
+          marketNn: coinRes.MarketName,
+          volume: coinRes.BaseVolume,
+          spread: '',//_spread(coinRes.Last, coinRes.Ask, coinRes.Bid),
+          trend: ''//_checkTrend(coinRes.MarketName),
+          //adx: _checkADX(coinRes.MarketName)
+        });
+
+        listcoin.save(function (error) {
+          if (error) {
+            console.error(error);
+          }
+        });
+      }
+    });
+  })
+    .catch((err) => {
+      return next(err);
+    });
 
 
-  bittrex.getmarketsummaries(function (data, err) {
-    if (err) {
-      return console.error(err);
-    }
-    //Chỉ get cặp BTC va volume > 500
-    data.result = _.filter(
-      data.result, u => u.MarketName.toString().indexOf('BTC-') > -1
-        && u.BaseVolume > 500
-        && _spread(u.Last, u.Ask, u.Bid) > 0.2
-        && _checkTrend(u.MarketName) != 'up'
-        && _checkCandle(u.MarketName) != '2red'
-    );
-
-    for (let i in data.result) {
-      let coinRes = data.result[i];
-      //console.log(data.result[i].MarketName);
-      const listcoin = new ListCoinBittrex({
-        marketNn: coinRes.MarketName,
-        bvolume: coinRes.BaseVolume,
-        spread: _spread(coinRes.Last, coinRes.Ask, coinRes.Bid),
-        candle: _checkCandle(coinRes.MarketName),
-        trend: _checkTrend(coinRes.MarketName),
-
-        // bid: coinRes,
-        // highVl: coinRes,
-        // lowVl: coinRes,
-        // lastVl: coinRes,
-        // openBuyOrder: coinRes,
-        // openSellOrder: Number,
-        // timeMarket: String
-      });
-
-      listcoin.save(function (error) {
-        //console.log("List coin has been saved!");
-        if (error) {
-          console.error(error);
-        }
-      });
-      promise = "OK";
-    }
-  });
-  return promise;
 }
 
-function deleteListCoinBeforeScan() {
-
-  ListCoinBittrex.remove({}, (err) => {
-    if (err) {
-      return next(err);
-    }
-  });
+const deleteListCoinBeforeScan = async () => {
+  await
+    ListCoinBittrexSideWay.remove({}, (err, data) => {
+      if (err) {
+        return next(err);
+      }
+      return data;
+    });
+  return true;
 }
 
 function _spread(bittrexlast, bittrexask, bittrexbid) {
   return (100 / bittrexlast) * (bittrexask - bittrexbid);
 }
 
-function _checkTrend(marketNm) {
+const _checkTrend = async (marketNm) => {
   let count_up = 0;
   let count_down = 0;
-  setTimeout(function () {
+  await
     bittrex.getcandles({
       marketName: marketNm,
       tickInterval: 'thirtyMin'
@@ -158,8 +155,7 @@ function _checkTrend(marketNm) {
           }
         }
       });
-    })
-  }, 500);
+    });
 
   if (count_up > count_down) {
     return "up";
@@ -200,6 +196,19 @@ function _checkCandle(marketNm) {
   } else {
     return "1red";
   }
+}
+
+
+const _checkADX = async (close, high, low) => {
+  let period = 14;
+  let input = {
+    close: close,
+    high: high,
+    low: low,
+    period: period
+  }
+  let lastADX = await _.last(ADX.calculate(input));
+  return lastADX.adx;
 }
 
 /**
@@ -251,6 +260,61 @@ exports.getReqWithdrawnList = (req, res) => {
       return next(err);
     });
 };
+
+/**
+ * Get List Coin Sideway
+ * @param req
+ * @param res
+ */
+exports.getListCoinSideWay = (req, res) => {
+  // // getListCoin().then((data) => {
+  // //
+  // // })
+  // //   .catch((err) => {
+  // //     return next(err);
+  // //   });
+  // let p0 = new Promise((resolve, reject) => {
+  //   ListCoinBittrexSideWay.find({}, (err, listCoin) => {
+  //     if (err) {
+  //       reject(err);
+  //     } else {
+  //       resolve(listCoin);
+  //     }
+  //   });
+  // });
+  // Promise.all([p0])
+  //   .then((data) => {
+  //     res.render('account/listCoinSideWay', {
+  //       title: 'List Coin',
+  //       listCoin: data[0]
+  //
+  //     });
+  //   })
+  //   .catch((err) => {
+  //     return next(err);
+  //   });
+
+  bittrex.getmarketsummaries(function (data, err) {
+    if (err) {
+      return console.error(err);
+    }
+    //Chỉ get cặp BTC va volume > 500
+    data.result = _.filter(
+      data.result, u => u.MarketName.toString().indexOf('BTC-') > -1
+        && u.BaseVolume > 500
+        //&& _spread(u.Last, u.Ask, u.Bid) > 0.2
+        && _checkTrend(u.MarketName) != 'up'
+      //&& _checkADX(u.MarketName) <= 25
+      //&& _checkCandle(u.MarketName) != '2red'
+    );
+
+    res.render('account/listCoinSideWay', {
+            title: 'List Coin',
+            listCoin: data.result
+
+          });
+  });
+}
 
 function getPerWL(coinNm, timeenterPrice, enterPrice) {
   let winLosePrice = 0;

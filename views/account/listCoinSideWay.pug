@@ -1,0 +1,46 @@
+extends ../layout
+block page_css
+  link(rel='stylesheet', href='/global/vendor/datatables-bootstrap/dataTables.bootstrap.css')
+  link(rel='stylesheet', href='/assets/css/datatables.css')
+  link(rel='stylesheet', href='/css/table.css')
+
+block content
+  .panel
+    header.panel-heading
+      .panel-actions
+      h3.panel-title.margin-top-0.panel-title.text-primary(style='padding: 20px 30px')
+        i.icon.md-book(aria-hidden='true')
+        | List Top Coin After Check
+    .panel-body
+      table.table.table-hover.dataTable.table-striped.w-full(data-plugin='dataTable')
+        thead
+          tr
+            th #No
+            th Market Name
+            th Volume
+            th Adx
+            th Trend
+        tbody
+          - var i = 0;
+            each lst in listCoin
+              - i += 1
+              tr
+                td= i
+                td
+                  a(href='https://bittrex.com/Market/Index?MarketName=' + lst.MarketName, target="_blank")= lst.MarketName
+                td= lst.BaseVolume
+                td= lst.spread
+                td= lst.adx
+                td= lst.trend
+
+  script.
+    jQuery(document).ready(function () {
+      setTimeout(function () {
+        $('table').parent().attr('style', 'overflow: scroll');
+      }, 100)
+    });
+
+block scripts
+  script(src='/global/vendor/datatables/jquery.dataTables.min.js')
+  script(src='/global/vendor/datatables-bootstrap/dataTables.bootstrap.js')
+  script(src='/global/js/Plugin/datatables.min.js')

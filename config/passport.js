@@ -54,8 +54,8 @@ exports.isAuthenticated = (req, res, next) => {
   let reqPath = reqUrl;
   if (reqPath == "/account/changeBlockChain" || reqPath == "/account/changePassWord" || reqPath == "/account/profile"
     || reqPath == "/account/active" || reqPath == "/account/requestWithdrawn" || reqPath == "/account/transferBtc"
-    || reqPath == "/account/listuserfloor" || reqPath.startsWith("/verify_email") || reqPath.startsWith("/listCoin")
-    || reqPath.startsWith("/account/withdrawn/checkDone") || reqPath.startsWith("/removeCheck")) {
+    || reqPath == "/account/listuserfloor" || reqPath.startsWith("/verify_email") || reqPath.startsWith("/listCoin" )
+    || reqPath.startsWith("/account/withdrawn/checkDone") || reqPath.startsWith("/removeCheck") || reqPath.startsWith("/checkSideway")) {
     return next();
   } else if (req.isAuthenticated() && helper.hasPermission(req.user, reqPath)) {
     return next();

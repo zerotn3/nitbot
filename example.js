@@ -21,7 +21,7 @@ function sellcoin(){
 };
 
 function buycoin() {
-  bittrex.getbalance({ currency : 'ETH' }, function( data, err ) {
+  bittrex.getbalance({ currency : 'SRN' }, function( data, err ) {
     console.log( data );
   });
 }

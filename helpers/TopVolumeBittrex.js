@@ -4,6 +4,7 @@ const _ = require('lodash');
 const RSI = require('technicalindicators').RSI;
 const BB = require('technicalindicators').BollingerBands;
 const EMA = require('technicalindicators').EMA;
+
 //const bottelegram = require('./bottelegram');
 const ListCoinBittrex = require('../models/ListCoinBittrex');
 const ListCoinTopBittrex = require('../models/ListCoinTopBittrex');
@@ -113,7 +114,6 @@ const funcCheckPrice = (marketNm, buyFlag, sellFlag, percentSell, enterPrice, bt
         console.log(`Có lỗi check balance : ${err.message}`);
         return;
       }
-      if(balance.result.Balance == null) return;
       /**
        * Check if balance <=0 that mean not yet BUY coin. Buy again
        */
@@ -382,6 +382,14 @@ const tradebuy = (MarketName, Quantity, Rate) => {
       resolve(data);
     }))
 };
+
+
+/**
+ * ************************************************************************************
+ * Check Side Way
+ * ************************************************************************************
+ */
+
 
 const checkListTopCoinBittrex = {
 

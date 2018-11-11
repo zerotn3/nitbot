@@ -18,102 +18,22 @@
     "NEW_MEM": 3
   },
   "MENUS": [
-    {
-      "name": "Dashboard",
-      "link": "/dashboard",
-      "icon": "md-view-dashboard",
-      "roles": [
-        0,
-        1
-      ]
-    },
-    {
-      "name": "Wallet",
-      "link": "/account/wallet",
-      "icon": "md-balance-wallet",
-      "roles": [
-        0,
-        1
-      ]
-    },
-    {
-      "name": "Profile",
-      "link": "/account",
-      "icon": "md-accounts",
-      "roles": [
-        0,
-        1,
-        2
-      ]
-    },
-    {
-      "name": "Admin Config",
-      "link": "/admin/config",
-      "icon": "md-wrench",
-      "roles": [
-        0
-      ]
-    },
-    {
-      "name": "Contact Us",
-      "link": "/contact",
-      "icon": "md-comments",
-      "roles": [
-        0,
-        1,
-        2
-      ]
-    },
-    {
-      "name": "Active User",
-      "link": "/account/active",
-      "icon": "md-lock",
-      "roles": [
-        2
-      ]
-    },
-    {
-      "name": "Reference",
-      "link": "/account/mylink",
-      "icon": "md-link",
-      "roles": [
-        0,
-        1
-      ]
-    },
-    {
-      "name": "Witdrawn List",
-      "link": "/account/reqWithdrawnList",
-      "icon": "md-view-list",
-      "roles": [
-        0
-      ]
-    },
+
     {
       "name": "List Coin",
-      "link": "/account/listCoin",
+      "link": "/listCoin",
       "icon": "md-view-list",
       "roles": [
         0
       ]
-    },
-    {
-      "name": "Confirm Email",
-      "link": "/account/confirmEmail",
+    },{
+      "name": "Check List Coin SideWay",
+      "link": "/checkSideway",
       "icon": "md-view-list",
       "roles": [
-        3
+        0
       ]
-    },
-    {
-      "name": "Confirm Email",
-      "link": "/account/signupdone",
-      "icon": "md-view-list",
-      "roles": [
-        3
-      ]
-    },
-    {
+    }, {
       "name": "Logout",
       "link": "/logout",
       "icon": "md-power",
