@@ -26,8 +26,9 @@ const Config = require('./models/Config');
 const constants = require('./config/constants.json');
 const User = require('./models/User');
 
-const upload = multer({dest: path.join(__dirname, 'uploads')});
-
+const upload = multer({
+  dest: path.join(__dirname, 'uploads')
+});
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -49,12 +50,11 @@ const configBittrexController = require('./controllers/ConfigBittrexController')
 const walletController = require('./controllers/WalletController');
 const helper = require('./helpers/helper');
 const seeder = require('./helpers/seeder');
-//const bitttrexSignal = require('./helpers/bitttrexSignal');
-//const binanceSignal = require('./helpers/binanceSignal');
+// const bitttrexSignal = require('./helpers/bitttrexSignal'); const
+// binanceSignal = require('./helpers/binanceSignal');
 const topVolumeBittrex = require('./helpers/TopVolumeBittrex');
 
 const listCoinController = require('./controllers/ListCoinController');
-
 
 /**
  * API keys and Passport configuration.
@@ -130,7 +130,7 @@ app.use(expressValidator({
         });
       });
     },*/
-  },
+  }
 }));
 app.use(session({
   resave: true,
@@ -165,18 +165,17 @@ app.use((req, res, next) => {
 });
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
-  if (!req.user &&
-    req.path !== '/login' &&
-    req.path !== '/signup' && !req.path.match(/^\/auth/) && !req.path.match(/\./)) {
+  if (!req.user && req.path !== '/login' && req.path !== '/signup' && !req.path.match(/^\/auth/) && !req.path.match(/\./)) {
     req.session.returnTo = req.path;
-  } else if (req.user &&
-    req.path == '/account') {
+  } else if (req.user && req.path == '/account') {
     req.session.returnTo = req.path;
   }
   next();
 });
 app.use((req, res, next) => {
-  req.session.touch();
+  req
+    .session
+    .touch();
   next();
 });
 
@@ -221,7 +220,7 @@ app.post('/login', userController.postLogin);
 
 app.get('/logout', userController.logout); //logout
 
-app.get('/forgot', userController.getForgot);// forget
+app.get('/forgot', userController.getForgot); // forget
 app.post('/forgot', userController.postForgot);
 
 app.post('/changePassword2', userController.postChangePassword2); // forget password 2
@@ -229,13 +228,13 @@ app.post('/changePassword2', userController.postChangePassword2); // forget pass
 app.get('/reset/:token', userController.getReset); //reset
 app.post('/reset/:token', userController.postReset);
 
-app.get('/reset2/:token',  userController.getReset2); //reset pass 2
+app.get('/reset2/:token', userController.getReset2); //reset pass 2
 app.post('/reset2/:token', userController.postReset2);
 
-app.get('/signup', userController.getSignup);//sign up
+app.get('/signup', userController.getSignup); //sign up
 app.post('/signup', userController.postSignup);
 
-app.get('/error', userController.getError);//sign up
+app.get('/error', userController.getError); //sign up
 
 app.get('/contact', passportConfig.isAuthenticated, NavigationMiddleware, contactController.getContact); //get contact
 app.post('/contact', passportConfig.isAuthenticated, contactController.postContact);
@@ -248,8 +247,6 @@ app.post('/account/active', passportConfig.isAuthenticated, userController.postA
 app.get('/admin/config', passportConfig.isAuthenticated, NavigationMiddleware, configController.index);
 app.post('/admin/config', passportConfig.isAuthenticated, configController.postConfig);
 
-
-
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile); //profile
 app.get('/account/mylink', passportConfig.isAuthenticated, NavigationMiddleware, userController.getMyLink); //link ref
 app.get('/account/listuserfloor', passportConfig.isAuthenticated, NavigationMiddleware, userController.getlistuserfloor); //link list user of floor
@@ -259,8 +256,6 @@ app.post('/account/requestWithdrawn', passportConfig.isAuthenticated, walletCont
 app.post('/account/transferBtc', passportConfig.isAuthenticated, walletController.postTransferBtc);
 
 app.get('/account/reqWithdrawnList', passportConfig.isAuthenticated, NavigationMiddleware, userController.getReqWithdrawnList);
-
-
 
 app.get('/account/withdrawn/checkDone', passportConfig.isAuthenticated, userController.withdrawnCheckDone);
 app.post('/admin/search_req', userController.postSearch_req);
@@ -274,8 +269,8 @@ app.post('/account/changePassWord', passportConfig.isAuthenticated, userControll
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, NavigationMiddleware, userController.getOauthUnlink);
 
-app.get('/confirmEmail', userController.getConfirmEmail);//confirm Email
-app.get('/signupDone', userController.getSignupDone);//confirm Email
+app.get('/confirmEmail', userController.getConfirmEmail); //confirm Email
+app.get('/signupDone', userController.getSignupDone); //confirm Email
 app.get('/verify_email', userController.getVerifyEmail);
 
 //=========================New App =======================
@@ -296,7 +291,9 @@ app.get('/api/google-maps', apiController.getGoogleMaps);
 /**
  * OAuth authentication routes. (Sign in)
  */
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'user_location']}));
+app.get('/auth/facebook', passport.authenticate('facebook', {
+  scope: ['email', 'user_location']
+}));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/login'}), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
@@ -317,16 +314,12 @@ app.listen(app.get('port'), () => {
   /**
    * Bittrex
    */
-  // bitttrexSignal.getListCoinBittrex();
-  // bitttrexSignal.funcCheckCoinEMA();
+  // bitttrexSignal.getListCoinBittrex(); bitttrexSignal.funcCheckCoinEMA();
   //
-  // let countrun = 0;
-  // let minutes = 10, the_interval = minutes * 60 * 1000;
-  // setInterval(function () {
-  //   bitttrexSignal.funcCheckCoinEMA();
-  //   countrun = countrun + 1;
-  //   console.log("==========Chạy được   " + countrun + "   lần=============")
-  // }, the_interval);
+  // let countrun = 0; let minutes = 10, the_interval = minutes * 60 * 1000;
+  // setInterval(function () {   bitttrexSignal.funcCheckCoinEMA();   countrun =
+  // countrun + 1;   console.log("==========Chạy được   " + countrun + "
+  // lần=============") }, the_interval);
 
   /**
    * Binance
@@ -335,7 +328,8 @@ app.listen(app.get('port'), () => {
   topVolumeBittrex.funcCheckListTopCoin();
 
   let countrun = 0;
-  let minutes = 0.05, the_interval = minutes * 60 * 1000;
+  let minutes = 0.05,
+    the_interval = minutes * 60 * 1000;
   console.log("==========Bat dau check=============")
   setInterval(function () {
     //topVolumeBittrex.startFindBittex();
