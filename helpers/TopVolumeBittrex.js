@@ -11,7 +11,10 @@ const ListCoinBuySellBittrex = require('../models/ListCoinBuySellBittrex');
 const moment = require('moment');
 
 const constants = require('../config/constants.json');
-
+bittrex.options({
+  'apikey': 'd355c14501924c158d3d29db9ef0155e',
+  'apisecret': '79e59b9dd7db41a3ad9e31e512142192',
+});
 
 const startFindBittex = () => {
   funcListCoinTopVolume();
@@ -21,7 +24,7 @@ const startFindBittex = () => {
  * Check List Coin Top & Save
  */
 const funcListCoinTopVolume = () => {
-  bittrex.getmarketsummaries(function (data, err) {
+  bittrex.getmarkets(function (data, err) {
     if (err) {
       return console.error(err);
     }
@@ -29,7 +32,7 @@ const funcListCoinTopVolume = () => {
     //data.result = _.sortBy(data.result, ['BaseVolume']);
     //let last4ArrCoin = data.result.slice((data.result.length - 4), data.result.length);
     for (var i in data.result) {
-      saveCoinChecked(data.result[i].MarketName);
+      saveCoinChecked(data.result[i].MarketName, data.result[i].MinTradeSize);
     }
   });
 }
@@ -40,7 +43,7 @@ const funcListCoinTopVolume = () => {
  * @param marketName
  * @returns {Promise}
  */
-const saveCoinChecked = (marketName) => {
+const saveCoinChecked = (marketName, minTradeSize) => {
   return new Promise((resolve, reject) => {
 
     ListCoinTopBittrex.findOne({marketNn: marketName}, function (err, marketNn) {
@@ -48,6 +51,7 @@ const saveCoinChecked = (marketName) => {
         if (!marketNn) {
           let listCoinTop = new ListCoinTopBittrex();
           listCoinTop.marketNn = marketName;
+          listCoinTop.minTradeSize = minTradeSize;
           listCoinTop.activeFlag = 'N';
           listCoinTop.buyFlag = 'N';
           listCoinTop.sellFlag = 'N';
@@ -78,8 +82,8 @@ const funcCheckListTopCoin = () => {
       console.log(err);
     }
     for (var i in data) {
-      console.log(`Checking ${data[i].marketNn} ....`);
-      funcCheckPrice(data[i].marketNn, data[i].buyFlag, data[i].sellFlag, data[i].percentSell, data[i].buy_pri);
+      //console.log(`Checking ${data[i].marketNn} ....`);
+      funcCheckPrice(data[i].marketNn, data[i].buyFlag, data[i].sellFlag, data[i].percentSell, data[i].buy_pri, data[i].btcQty, data[i].minTradeSize);
     }
   });
 };
@@ -91,7 +95,7 @@ const funcCheckListTopCoin = () => {
  * @param enterPrice
  * @returns {Promise}
  */
-const funcCheckPrice = (marketNm, buyFlag, sellFlag, percentSell, enterPrice) => new Promise((resolve, reject) =>
+const funcCheckPrice = (marketNm, buyFlag, sellFlag, percentSell, enterPrice, btcQty, minTradeSize) => new Promise((resolve, reject) =>
   bittrex.getticker({
     market: marketNm,
   }, (data, err) => {
@@ -99,22 +103,90 @@ const funcCheckPrice = (marketNm, buyFlag, sellFlag, percentSell, enterPrice) =>
       console.log(err);
       reject(err);
     }
-    let CurrentPrice = data.result.Last;
+    let CurrentPrice = data.result.Ask;
+    let CurrentPriceBid = data.result.Bid;
     let giaban = (Number(enterPrice) + ((Number(enterPrice) * Number(percentSell)) / 100)).toFixed(8);
-    //console.log(giaban);
-    if (CurrentPrice <= enterPrice && buyFlag == 'N') {
-      console.log(`Mua ${marketNm} tại giá ${CurrentPrice}`);
-      //function buy
-      //update flagbuy  = Y
-      funcUpdateFlagBuy(marketNm, 'Y');
-      funcSaveHistoryBuySell(marketNm, CurrentPrice, percentSell, 'BUY');
-    } else if (buyFlag == 'Y' && CurrentPrice >= giaban) {
-      console.log(`Bán ${marketNm} tại giá ${CurrentPrice}`)
-      //function sell
-      //update flag sell = Y
-      funcUpdateFlagBuy(marketNm, 'N');
-      funcSaveHistoryBuySell(marketNm, CurrentPrice, percentSell, 'SELL');
-    }
+    //console.log(`Giá nhỏ nhất mua bán được của ${marketNm} là ${minTradeSize}`);
+
+    let nameCoin = _.last(_.split(marketNm, '-', 2));
+    funcGetBalance(nameCoin).then((balance) => {
+      if (!balance.success) {
+        console.log(`Có lỗi check balance : ${err.message}`);
+        return;
+      }
+      /**
+       * Check if balance <=0 that mean not yet BUY coin. Buy again
+       */
+      if (balance.result.Balance <= 0 && CurrentPrice <= enterPrice) {
+        console.log(`Mua ${marketNm} tại giá ${CurrentPrice}`);
+        console.log(`Balance của ${marketNm} hiện tại là : ${balance.result.Balance}`);
+        let realQty = (btcQty / (CurrentPrice + CurrentPrice * 0.0025)).toFixed(8);
+        tradebuy(marketNm, realQty, CurrentPrice)
+          .then((databuy) => {
+            funcUpdateFlagAndPriceBuy(marketNm, 'Y', CurrentPrice);
+            funcSaveHistoryBuySell(marketNm, CurrentPrice, percentSell, 'BUY',
+              databuy.result.OrderId, databuy.result.Quantity, databuy.result.Rate);
+          })
+          .catch((err) => {
+            console.log(`Có lỗi hệ thống khi buy ${err}`)
+          });
+      }
+      /**
+       * Check if balance > 0 that mean not yet SELL coin. SELL again
+       */
+       if (balance.result.Balance > 0 && CurrentPriceBid >= giaban) {
+        console.log(`Bán ${marketNm} tại giá ${CurrentPriceBid}`);
+        console.log(`Balance của ${marketNm} hiện tại là : ${balance.result.Balance}`);
+        tradesell(marketNm, balance.result.Balance, CurrentPriceBid)
+          .then((datasell) => {
+            if (!datasell.success) {
+              console.log(`Có lỗi không sell được : ${err.message}`);
+              return;
+            }
+            funcUpdateFlagBuyAfterSell(marketNm, 'N',);
+            funcSaveHistoryBuySell(marketNm, CurrentPriceBid, percentSell, 'SELL',
+              datasell.result.OderId, datasell.result.Quantity, datasell.result.Rate);
+          })
+      }
+    });
+    /* /!**
+      * Buy
+      *!/
+     if (CurrentPrice <= enterPrice && buyFlag == 'N') {
+       console.log(`Mua ${marketNm} tại giá ${CurrentPrice}`);
+       let realQty = (btcQty / (CurrentPrice + CurrentPrice * 0.0025)).toFixed(8);
+       Promise.all([tradebuy(marketNm, realQty, CurrentPrice)])
+         .then((databuy) => {
+           funcUpdateFlagAndPriceBuy(marketNm, 'Y', CurrentPrice);
+           funcSaveHistoryBuySell(marketNm, CurrentPrice, percentSell, 'BUY',
+             databuy[0].result.OrderId, databuy[0].result.Quantity, databuy[0].result.Rate);
+         })
+         .catch((err) => {
+           console.log(`Có lỗi hệ thống ${err}`)
+         });
+
+       /!**
+        * Sell
+        *!/
+     } else if (buyFlag == 'Y' && CurrentPriceBid >= giaban) {
+       console.log(`Bán ${marketNm} tại giá ${CurrentPriceBid}`)
+       let nameCoin = _.last(_.split(marketNm, '-', 2));
+       funcGetBalance(nameCoin).then((balance) => {
+         if (!balance.success) {
+           console.log(`Có lỗi check balance : ${err.message}`);
+           return;
+         }
+         tradesell(marketNm, balance.result.Balance, CurrentPriceBid).then((datasell) => {
+           if (!datasell.success) {
+             console.log(`Có lỗi không sell được : ${err.message}`);
+             return;
+           }
+           funcUpdateFlagBuyAfterSell(marketNm, 'N',);
+           funcSaveHistoryBuySell(marketNm, CurrentPriceAsk, percentSell, 'SELL',
+             datasell.result.OderId, datasell.result.Quantity, datasell.result.Rate);
+         })
+       });
+     }*/
   }));
 
 /**
@@ -122,7 +194,31 @@ const funcCheckPrice = (marketNm, buyFlag, sellFlag, percentSell, enterPrice) =>
  * @param marketNm
  * @param flag
  */
-const funcUpdateFlagBuy = (marketNm, flag) => {
+const funcUpdateFlagAndPriceBuy = (marketNm, flag, CurrentPrice) => {
+  let promises = [];
+  promises.push(ListCoinTopBittrex.update({marketNn: marketNm}, {
+    $set: {
+      buyFlag: flag,
+      buy_pri: CurrentPrice
+    }
+  }));
+
+  Promise.all(promises)
+    .then(() => {
+      console.log(`Buy thành công ${marketNm} và chuyển về trạng thái đợi bán`);
+    })
+    .catch((err) => {
+      console.log(`Mua méo được : ${err.message}`)
+    });
+}
+
+/**
+ * Update flag buy aff sell
+ * @param marketNm
+ * @param flag
+ * @param CurrentPrice
+ */
+const funcUpdateFlagBuyAfterSell = (marketNm, flag) => {
   let promises = [];
   promises.push(ListCoinTopBittrex.update({marketNn: marketNm}, {
     $set: {
@@ -132,14 +228,14 @@ const funcUpdateFlagBuy = (marketNm, flag) => {
 
   Promise.all(promises)
     .then(() => {
-      console.log(`Buy thành công ${marketNm} và chuyển về trạng thái đợi bán`);
+      console.log(`Sell thành công ${marketNm} và chuyển về trạng thái đợi mua`);
     })
     .catch((err) => {
-      console.log(`Mua méo được`)
+      console.log(`Mua bán được : ${err.message}`)
     });
 }
 
-const funcSaveHistoryBuySell = (marketName, enterPrice, percentSell, typeP) => {
+const funcSaveHistoryBuySell = (marketName, enterPrice, percentSell, typeP, oder, qty, rate) => {
   return new Promise((resolve, reject) => {
     const enterTime = moment(new Date(), constants.DATE_FORMAT).tz("Asia/Ho_Chi_Minh").toDate();
     let listCoinBuySellBittrex = new ListCoinBuySellBittrex();
@@ -148,11 +244,14 @@ const funcSaveHistoryBuySell = (marketName, enterPrice, percentSell, typeP) => {
     listCoinBuySellBittrex.percentSell = percentSell;
     listCoinBuySellBittrex.enterTime = enterTime;
     listCoinBuySellBittrex.type = typeP;
+    listCoinBuySellBittrex.oder = oder;
+    listCoinBuySellBittrex.qty = qty;
+    listCoinBuySellBittrex.rate = rate;
 
     listCoinBuySellBittrex.save(function (err) {
       if (!err) {
         resolve(`Save Done`);
-        console.log(`Đã mua: ${marketName} với giá ${enterPrice} tại thời điểm ${enterTime}`)
+        console.log(`Đã ${typeP}: ${marketName} với giá ${enterPrice} tại thời điểm ${enterTime}`)
       }
       else {
         reject(`Save Fail`);
@@ -220,6 +319,67 @@ const getListDataBittrex = () => {
         reject(error);
       }
       resolve(data.result);
+    }))
+};
+
+const funcGetBalance = (MarketName) => {
+  return new Promise((resolve, reject) =>
+    bittrex.getbalance({currency: MarketName}, function (data, err) {
+      if (err) {
+        console.log(`>>>> Error Get Balance: ${err.message}`);
+        reject(err);
+      }
+      resolve(data);
+    }))
+};
+/**
+ * Sell Coin
+ * @param MarketName
+ * @param Quantity
+ * @returns {Promise}
+ */
+const tradesell = (MarketName, Quantity, Rate) => {
+  return new Promise((resolve, reject) =>
+    bittrex.tradesell({
+      MarketName: MarketName,
+      OrderType: 'LIMIT',
+      Quantity: Number(Quantity),//1.00000000,
+      Rate: Number(Rate),
+      TimeInEffect: 'GOOD_TIL_CANCELLED', // supported options are 'IMMEDIATE_OR_CANCEL', 'GOOD_TIL_CANCELLED', 'FILL_OR_KILL'
+      ConditionType: 'NONE', // supported options are 'NONE', 'GREATER_THAN', 'LESS_THAN'
+      Target: 0, // used in conjunction with ConditionType
+    }, function (data, err) {
+      if (err) {
+        console.log(`>>>> Error sell: ${err.message}`);
+        reject(err);
+      }
+      resolve(data);
+    }))
+};
+
+/**
+ * Buy Coin
+ * @param MarketName
+ * @param Quantity
+ * @param Rate
+ * @returns {Promise}
+ */
+const tradebuy = (MarketName, Quantity, Rate) => {
+  return new Promise((resolve, reject) =>
+    bittrex.tradebuy({
+      MarketName: MarketName,
+      OrderType: 'LIMIT',
+      Quantity: Quantity,
+      Rate: Number(Rate),
+      TimeInEffect: 'GOOD_TIL_CANCELLED', // supported options are 'IMMEDIATE_OR_CANCEL', 'GOOD_TIL_CANCELLED', 'FILL_OR_KILL'
+      ConditionType: 'NONE', // supported options are 'NONE', 'GREATER_THAN', 'LESS_THAN'
+      Target: 0, // used in conjunction with ConditionType
+    }, function (data, err) {
+      if (err) {
+        console.log(`>>>> Error buy: ${err.message}`);
+        reject(err);
+      }
+      resolve(data);
     }))
 };
 

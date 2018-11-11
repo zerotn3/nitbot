@@ -40,6 +40,7 @@ exports.postConfigBittrex = (req, res) => {
   let buy_pri = req.body.buy_pri;
   let percentSell = req.body.percentSell;
   let activeFlag = req.body.activeFlag == 'Y' ? 'Y' : 'N';
+  let btcQty = req.body.btcQty;
   //const date = moment(dateEnding, constants.DATE_FORMAT).tz("Asia/Ho_Chi_Minh").toDate();
   let promises = [];
   promises.push(Config.update({marketNn: marketNm}, {
@@ -47,6 +48,7 @@ exports.postConfigBittrex = (req, res) => {
       buy_pri: buy_pri,
       percentSell: percentSell,
       activeFlag: activeFlag,
+      btcQty: btcQty,
     }
   }));
 

@@ -127,10 +127,10 @@ exports.postLogin = (req, res, next) => {
           let returnTo = req.session.returnTo;
           let isActive = user.active;
 
-          let redirectSs = req.session.returnTo || "/dashboard";
+          let redirectSs = req.session.returnTo || "/listCoin";
           returnTo = returnTo == "" || returnTo == "/" ? redirect_after_login : redirectSs;
           if (returnTo == '/logout') {
-            returnTo = '/dashboard';
+            returnTo = '/listCoin';
           }
           if (!isActive)
             returnTo = "/listCoin";
