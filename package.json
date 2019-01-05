@@ -9,7 +9,7 @@
   "author": "Luc Duong, Tin Luong",
   "license": "MIT",
   "engines": {
-    "node": "7.2.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "start": "node app.js",
@@ -53,6 +53,7 @@
     "multer": "^1.2.0",
     "node-binance-api": "^0.4.29",
     "node-bittrex-api": "^0.8.3",
+    "node-cache": "^4.2.0",
     "node-foursquare": "^0.3.0",
     "node-linkedin": "^0.5.4",
     "node-sass-middleware": "^0.9.8",
@@ -86,6 +87,8 @@
     "validator": "^6.1.0"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "chai": "^3.5.0",
     "eslint": "^3.9.1",
     "eslint-config-airbnb-base": "^10.0.0",
