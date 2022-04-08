@@ -44,7 +44,7 @@
     "lodash": "^4.16.6",
     "lusca": "^1.4.1",
     "messaging-api-telegram": "^0.6.13",
-    "moment": "^2.21.0",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.11",
     "mongoose": "^4.6.6",
     "mongoose-deep-populate": "^3.0.0",
